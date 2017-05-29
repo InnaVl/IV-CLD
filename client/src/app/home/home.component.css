@@ -1,0 +1,4 @@
+button {
+    width: 200px;
+    margin: 20px calc(50% - 100px);
+}

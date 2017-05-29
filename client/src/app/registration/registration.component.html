@@ -1,0 +1,18 @@
+<div class="register-page">
+    <div class="form">
+        <form class="register-form" #registrationForm="ngForm">
+            <input type="text" name="username" [(ngModel)]="user.username"
+                   placeholder="username" required>
+            <input type="text" name="firstName" [(ngModel)]="user.firstName"
+                   placeholder="first name" required>
+            <input type="text" name="lastName" [(ngModel)]="user.lastName"
+                   placeholder="last name" required>
+            <input type="password" name="password" [(ngModel)]="user.password"
+                   placeholder="password" required>
+            <input type="password" name="conf_password" [(ngModel)]="confirmPassword"
+                   placeholder="confirm password" required>
+            <button type="submit" (click)="onCreate()">create</button>
+            <p class="message">Already registered? <a routerLink="/login">Sign In</a></p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+header {
+    padding: 1em;
+    display: block;
+    background-color: #4CAF50;
+    font-size: 24px;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 5px;
+    border: 2px solid transparent;
+    padding: 3px;
+    color: #eeeeee;
+}
+
+ul {
+    text-align: end;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #eeeeee;
+}
+
+a:hover {
+    border-bottom: 2px solid #d5d5d5;
+}
+
