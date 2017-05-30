@@ -1,74 +1,67 @@
-import webpackConfig from './webpack.test.js';
+module.exports = function (config) {
+  var testWebpackConfig = require('./webpack.test.js')({ env: 'test' });
 
-export default (config) => {
-    config.set({
-        babelPreprocessor: {
-            options: {
-                presets: ['es2015'],
-                plugins: ['transform-es2015-modules-umd'],
-                sourceMap: 'inline'
-            }
-        },
-        basePath: '',
-        frameworks: ['jasmine', 'source-map-support', 'karma-typescript'],
-        files: [
-            {pattern: './config/karma-test-shim.js', watched: false}
-        ],
-        preprocessors: {
-            './src/**/!(*spec).ts': ['webpack', 'karma-typescript', 'sourcemap', 'coverage'],
-            './src/**/*spec.ts': ['webpack', 'karma-typescript', 'sourcemap'],
-            './config/karma-test-shim.js': ['webpack', 'sourcemap', 'sourcemap']
-        },
-        webpackMiddleware: {
-            stats: 'errors-only'
-        },
+  var configuration = {
 
+    basePath: '',
+    frameworks: ['jasmine'],
+    exclude: [],
 
-        logLevel: config.LOG_INFO,
-        autoWatch: false,
-        singleRun: true,
+    client: {
+      captureConsole: false
+    },
 
+    files: [
+      { pattern: './config/spec-bundle.js', watched: false },
+    ],
+    preprocessors: { './config/spec-bundle.js': ['coverage', 'webpack', 'sourcemap'] },
 
-        plugins: [
-            'karma-jasmine',
-            'karma-chai',
-            'karma-mocha-reporter',
-            'karma-coverage',
-            'karma-remap-coverage',
-            'karma-phantomjs-launcher',
-            'karma-webpack',
-            'karma-jasmine-html-reporter',
-            'karma-babel-preprocessor',
-            'karma-sourcemap-loader',
-            'karma-sourcemap-writer',
-            "karma-source-map-support",
-            'karma-typescript'
+    webpack: testWebpackConfig,
+
+    coverageReporter: {
+      type: 'in-memory'
+    },
+
+    remapCoverageReporter: {
+      'text-summary': null,
+      json: './coverage/coverage.json',
+      html: './coverage/html'
+    },
 
 
-        ],
-        remapCoverageReporter: {
-            'text-summary': null,
-            'json': './coverage/coverage.json',
-            'html': './coverage/html',
-            'lcovonly': './coverage/lcov.info',
-            cobertura: './coverage/cobertura.xml'
+    webpackMiddleware: {
 
-        },
+      noInfo: true,
 
-        webpack: webpackConfig,
+      stats: {
 
-        reporters: ['progress', 'karma-typescript', 'kjhtml', 'coverage', 'remap-coverage', 'mocha'],
+        chunks: false
+      }
+    },
 
-        webpackServer: {noInfo: true},
+    reporters: ['mocha', 'coverage', 'remap-coverage'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_WARN,
+    autoWatch: false,
+    browsers: [
+      'Chrome'
+    ],
 
-        colors: true,
-        browsers: 'PhantomJS',
+    customLaunchers: {
+      ChromeTravisCi: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+    singleRun: true
+  };
 
-        coverageReporter: {
-            //reporters: [
-            //    // reporters not supporting the `file` property
-            //    {type: 'html', subdir: 'report-html'}],
-            type: 'in-memory'
-        }
-    });
-}
+  if (process.env.TRAVIS) {
+    configuration.browsers = [
+      'ChromeTravisCi'
+    ];
+  }
+
+  config.set(configuration);
+};

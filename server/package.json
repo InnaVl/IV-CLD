@@ -1,6 +1,9 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "scripts":{
+    "start":"node index.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.1.0",
     "body-parser": "^1.13.2",

@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class CalendarComponent {
-
+    matchPass(){
+        return 4;
+    }
 }

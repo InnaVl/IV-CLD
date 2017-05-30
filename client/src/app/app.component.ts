@@ -1,6 +1,5 @@
-import {Component, AfterViewInit, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 
-import '../assets/css/styles.css';
 import {AuthenticationService} from "./services/authentication.service";
 import {User} from "../models/userModel";
 

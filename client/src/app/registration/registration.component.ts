@@ -45,7 +45,6 @@ export class RegistrationComponent {
     }
 
     passwordPattern(){
-
     }
 
 }
