@@ -1,0 +1,32 @@
+@import '../assets/styles/_variables';
+
+header {
+    padding: 1em;
+    display: block;
+    background-color: $primary-bg;
+    font-size: 24px;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 5px;
+    border: 2px solid transparent;
+    padding: 3px;
+    color: $primary-link;
+}
+
+ul {
+    text-align: end;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+a {
+    text-decoration: none;
+    color:  $primary-link;
+}
+
+a:hover {
+    border-bottom: 2px solid $primary-link;
+}

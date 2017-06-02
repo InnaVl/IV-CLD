@@ -2,11 +2,11 @@ import {Component, Output, EventEmitter} from '@angular/core';
 
 import {AuthenticationService} from "./services/authentication.service";
 import {User} from "../models/userModel";
-
+import '../assets/styles/styles.scss'
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
     public user: string = '';
