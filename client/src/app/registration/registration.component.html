@@ -1,19 +1,45 @@
 <div class="form">
     <div class="columns">
-        <div class="column is-half is-offset-one-quarter box">
-            <form class="register-form" #registrationForm="ngForm">
-                <input type="text" name="username" [(ngModel)]="user.username"
-                       placeholder="username" required>
-                <input type="text" name="firstName" [(ngModel)]="user.firstName"
-                       placeholder="first name" required>
-                <input type="text" name="lastName" [(ngModel)]="user.lastName"
-                       placeholder="last name" required>
-                <input type="password" name="password" [(ngModel)]="user.password"
-                       placeholder="password" required>
-                <input type="password" name="conf_password" [(ngModel)]="confirmPassword"
-                       placeholder="confirm password" required>
-                <button type="submit" (click)="onCreate()">create</button>
-                <p class="message">Already registered? <a routerLink="/login">Sign In</a></p>
+        <div class="column is-4 is-offset-4 card">
+            <form #registrationForm="ngForm">
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="text" name="username" [(ngModel)]="user.username"
+                               placeholder="username" required>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="text" name="firstName" [(ngModel)]="user.firstName"
+                               placeholder="first name" required>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="text" name="lastName" [(ngModel)]="user.lastName"
+                               placeholder="last name" required>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="password" name="password" [(ngModel)]="user.password"
+                               placeholder="password" required>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="password" name="conf_password" [(ngModel)]="confirmPassword"
+                               placeholder="confirm password" required>
+                    </p>
+                </div>
+                <div class="center">
+                    <div>
+                        <button class="button" type="submit" (click)="onCreate()">create</button>
+                    </div>
+                    <div>
+                        <p>Already registered? <a routerLink="/login">Sign In</a></p>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
