@@ -1,12 +1,13 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
 
 import {AuthenticationService} from "./services/authentication.service";
 import {User} from "../models/userModel";
-import '../assets/styles/styles.scss'
+//import './assets/styles/global.scss';
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['./app.component.scss', './assets/styles/global.scss']
 })
 export class AppComponent {
     public user: string = '';

@@ -46,16 +46,8 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                        loader: ExtractTextPlugin.extract({
-                            fallbackLoader: 'style-loader',
-                            loader: 'css-loader?sourceMap'
-                        })
-                    },
-                    {
-                        loader: ExtractTextPlugin.extract({loader: "sass-loader"}) // compiles Sass to CSS
-                    }]
+                exclude: /node_modules/,
+                loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
             }
         ]
     },
