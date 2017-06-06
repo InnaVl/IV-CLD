@@ -1,4 +1,5 @@
 <div *ngIf="message"
-     [ngClass]="{ 'warning':message.type === 'warning', 'success': message.type === 'success', 'error': message.type === 'error' }">
+     [ngClass]="{'notification':true, 'is-warning':message.type === 'warning', 'is-success': message.type === 'success', 'is-danger': message.type === 'error' }">
+    <button class="delete"></button>
     {{message.text}}
 </div>

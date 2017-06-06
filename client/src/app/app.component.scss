@@ -1,32 +1,17 @@
 @import 'assets/styles/variables.scss';
 
 header {
-    padding: 1em;
-    display: block;
-    background-color: $primary-bg;
-    font-size: 24px;
+  background-color: $primary-color;
+  padding: 1em;
 }
 
-li {
-    list-style-type: none;
-    display: inline;
-    margin-right: 5px;
-    border: 2px solid transparent;
-    padding: 3px;
-    color: $primary-link;
+nav.nav {
+  background-color: transparent;
+  font-weight: 800;
 }
-
-ul {
-    text-align: end;
-    margin-left: 0;
-    padding-left: 0;
+.nav-menu a.nav-item.is-tab:hover {
+  border-bottom-color: transparent;
 }
-
-a {
-    text-decoration: none;
-    color:  $primary-link;
-}
-
-a:hover {
-    border-bottom: 2px solid $primary-link;
+.nav-menu a.nav-item.is-tab.is-active:hover {
+  border-bottom-color: $primary;
 }

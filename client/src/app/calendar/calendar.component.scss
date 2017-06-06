@@ -1,0 +1,26 @@
+.calendar {
+  margin: 1rem;
+}
+
+.day {
+  border: solid #7f7f7f 1px;
+  height: 100px;
+}
+.date_name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+
+  i{
+    margin-top: -20px;
+    padding: 10px;
+  }
+}
+.delete{
+  text-align: end;
+}
+.title {
+  text-align: center;
+  padding: 5px;
+}

@@ -5,7 +5,7 @@ import {NotificationService} from "../services/notification.service";
 @Component({
     selector:'notification',
     templateUrl: 'notification.component.html',
-    styleUrls: ['./notification.component.css']
+    styleUrls: ['notification.component.scss']
 
 })
 

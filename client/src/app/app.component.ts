@@ -2,7 +2,7 @@ import {Component, Output, EventEmitter, ViewEncapsulation} from '@angular/core'
 
 import {AuthenticationService} from "./services/authentication.service";
 import {User} from "../models/userModel";
-//import './assets/styles/global.scss';
+
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
