@@ -10,7 +10,7 @@ import {NotificationService} from "../services/notification.service";
 })
 
 export class NotificationComponent implements OnInit{
-    private message:any;
+    public message:any;
 
     constructor(private notificationService:NotificationService) { }
 

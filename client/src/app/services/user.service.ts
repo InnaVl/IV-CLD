@@ -17,10 +17,6 @@ export class UserService {
         return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());
     }
 
-    test(){
-        return 3;
-    }
-
     // private helper methods
 
     private jwt() {

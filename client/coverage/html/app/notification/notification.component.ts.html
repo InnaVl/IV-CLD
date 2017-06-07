@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app\calendar\calendar.component.ts</title>
+    <title>Code coverage report for app\notification\notification.component.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">app/calendar/</a> calendar.component.ts
+      <a href="../../index.html">all files</a> / <a href="index.html">app/notification/</a> notification.component.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">90.91% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>10/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>7/7</span>
       </div>
     </div>
   </div>
@@ -57,7 +57,15 @@
 12
 13
 14
-15</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+15
+16
+17
+18
+19
+20
+21</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -67,22 +75,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Component} from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
+import {NotificationService} from "../services/notification.service";
+&nbsp;
 &nbsp;
 @Component({
-    selector: 'calendar',
-    templateUrl: 'calendar.component.html',
-    styleUrls: ['calendar.component.scss']
+    selector:'notification',
+    templateUrl: 'notification.component.html',
+    styleUrls: ['notification.component.scss']
 &nbsp;
 })
 &nbsp;
-export class CalendarComponent {
-    matchPass() {
-        return 4;
+export class NotificationComponent implements OnInit{
+    public message:any;
+&nbsp;
+    constructor(private notificationService:NotificationService) { }
+&nbsp;
+    ngOnInit() {
+        this.notificationService.getMessage().subscribe(message<span class="fstat-no" title="function not covered" > =&gt; { <span class="cstat-no" title="statement not covered" >this.message = message; </span>})</span>;
     }
 }
 &nbsp;</pre></td></tr>

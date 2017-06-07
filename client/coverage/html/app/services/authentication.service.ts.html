@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app\services\user.service.ts</title>
+    <title>Code coverage report for app\services\authentication.service.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">app/services/</a> user.service.ts
+      <a href="../../index.html">all files</a> / <a href="index.html">app/services/</a> authentication.service.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.9% </span>
+        <span class="strong">82.35% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/21</span>
+        <span class='fraction'>14/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/7</span>
+        <span class='fraction'>4/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.82% </span>
+        <span class="strong">78.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/17</span>
+        <span class='fraction'>11/14</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -69,66 +69,57 @@
 24
 25
 26
-27
-28
-29
-30</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+27</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
+import 'rxjs/add/operator/map'
 &nbsp;
 import { AppConfig } from '../app.config';
-import { User } from '../../models/userModel';
+&nbsp;
 @Injectable()
-export class UserService {
+export class AuthenticationService {
     constructor(private http: Http, private config: AppConfig) { }
-    getById(_id: string<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span></span>;</span>
-    }
-    create(user: User<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        return this.http.post(this.config.apiUrl + '/users/register', user, this.jwt());</span>
+&nbsp;
+    login(username: string, password: string) {
+        return this.http.post(this.config.apiUrl + '/users/authenticate', { username: username, password: password })
+            .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+                // login successful if there's a jwt token in the response
+                let user = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >                if (user &amp;&amp; user.token) {</span>
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+<span class="cstat-no" title="statement not covered" >                    localStorage.setItem('currentUser', JSON.stringify(user));</span>
+                }
+            });
     }
 &nbsp;
-    delete(_id: string<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());</span>
-    }
-&nbsp;
-    // private helper methods
-&nbsp;
-<span class="fstat-no" title="function not covered" >    private jwt() {</span>
-        // create authorization header with jwt token
-        let currentUser = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('currentUser'));</span>
-<span class="cstat-no" title="statement not covered" >        if (currentUser &amp;&amp; currentUser.token) {</span>
-            let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'Authorization': 'Bearer ' + currentUser.token });</span>
-<span class="cstat-no" title="statement not covered" >            return new RequestOptions({ headers: headers });</span>
-        }
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
     }
 }</pre></td></tr>
 </table></pre>
