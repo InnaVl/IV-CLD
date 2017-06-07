@@ -1,15 +1,47 @@
 import {AuthenticationService} from "./authentication.service";
-import {Http} from "@angular/http";
-import {AppConfig} from "../app.config";
-describe('authentication',()=>{
-    let authentication:AuthenticationService;
-    beforeEach(()=>{
-        authentication =  new AuthenticationService(Http, AppConfig);
+import apiUrl from '../baseUrl';
+import {Http, HttpModule} from "@angular/http";
+import {Observable} from "rxjs";
+import {TestBed, inject, fakeAsync} from "@angular/core/testing";
+describe('authentication', ()=> {
+    let authentication: AuthenticationService;
+    let mockHttp: Http;
+    const mockResponse = {
+            "token": "token"
+    };
+    beforeEach(()=> {
+        mockHttp = {
+            post: null
+        } as Http;
+
+        spyOn(mockHttp, 'post').and.returnValue(Observable.of({
+            json: () => mockResponse
+        }));
+
+        TestBed.configureTestingModule({
+            imports: [HttpModule],
+            providers: [
+                {
+                    provide: Http,
+                    useValue: mockHttp
+                },
+                AuthenticationService
+            ]
+        });
     });
-    it('should login',()=>{
-        expect(authentication.login('user', 'password')).toBe('');
-    });
-    it('should logout',()=>{
+
+    it('should login', fakeAsync(
+        inject([AuthenticationService], authenticationService => {
+            authenticationService.login('username', 'password')
+                .subscribe(() => {
+                    expect(mockHttp.post).toHaveBeenCalledWith(apiUrl + '/users/authenticate',
+                        {username: 'username', password: 'password'});
+                });
+        })
+    ));
+
+    it('should logout', ()=> {
+        authentication = new AuthenticationService(mockHttp);
         spyOn(localStorage, 'removeItem');
         authentication.logout();
         expect(localStorage.removeItem).toHaveBeenCalledWith('currentUser');
