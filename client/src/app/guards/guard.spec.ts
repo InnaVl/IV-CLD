@@ -1,5 +1,5 @@
 import {AuthGuard} from "./guards";
-import {Route, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {Router, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
 describe('guard', ()=>{
     let guard:AuthGuard;
     beforeEach(()=>{

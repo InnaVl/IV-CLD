@@ -8,7 +8,11 @@ import {Component} from '@angular/core';
 })
 
 export class CalendarComponent {
-    matchPass() {
-        return 4;
+
+    createArrayOfDays(){
+        return [];
+    }
+    getCurrentDate(){
+        return new Date();
     }
 }
