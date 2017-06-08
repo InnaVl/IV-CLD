@@ -1,17 +1,11 @@
-<header>
+<header class="header">
     <nav class="nav">
         <div class="nav-left">
-            <a class="nav-item">
-                <i class="fa fa-home is-large"></i>
-            </a>
+            <p class="nav-item header__company-name">
+                Awesome name
+            </p>
+            <i class="nav-item header__logo fa fa-angellist" aria-hidden="true"></i>
         </div>
-        <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-        <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-        <!--<span class="nav-toggle">-->
-                <!--<span></span>-->
-                 <!--<span></span>-->
-                 <!--<span></span>-->
-        <!--</span>-->
         <div class="nav-right nav-menu">
             <span class="nav-item">Greetings, {{user || 'friend'}}!</span>
             <a class="nav-item is-tab is-hidden-mobile" *ngIf="user" routerLink="/calendar">Calendar</a>

@@ -1,12 +1,32 @@
-<div class="login-page">
-    <div class="form">
-        <form class="login-form">
-            <input type="text" name="username" [(ngModel)]="credentials.username"
-                   placeholder="username" required>
-            <input type="password" name="password" [(ngModel)]="credentials.password"
-                   placeholder="password" required>
-            <button type="submit" (click)="onLogin()">login</button>
-            <p class="message">Not registered? <a routerLink="/registration">Create an account</a></p>
-        </form>
+<div class="form">
+    <div class="columns">
+        <div class="column is-4 is-offset-4 card">
+            <div class="form__title">
+                <p class="title__text">Sign in to APP</p>
+            </div>
+            <form #loginForm>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="text" name="username" [(ngModel)]="credentials.username"
+                               placeholder="username" required>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="password" name="password" [(ngModel)]="credentials.password"
+                               placeholder="password" required>
+                    </p>
+                </div>
+                <div class="form__footer">
+                    <div class="form__button">
+                        <button class="button" type="submit" (click)="onLogin()">login</button>
+                    </div>
+                    <div class="form__message">
+                        <p>Not registered? <a routerLink="/registration">Create an account</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+

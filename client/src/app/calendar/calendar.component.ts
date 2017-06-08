@@ -12,7 +12,4 @@ export class CalendarComponent {
     createArrayOfDays(){
         return [];
     }
-    getCurrentDate(){
-        return new Date();
-    }
 }

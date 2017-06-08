@@ -4,7 +4,8 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class NotificationService {
-    private subject = new Subject<any>();
+    public subject = new Subject<any>();
+
 
      success(message: string) {
         this.subject.next({ type: 'success', text: message });

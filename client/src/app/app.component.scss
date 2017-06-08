@@ -1,17 +1,24 @@
 @import 'assets/styles/variables.scss';
 
-header {
+.header {
   background-color: $primary-color;
   padding: 1em;
+  .header__company-name{
+    font-size: 24px;
+    margin-left: 10px;
+  }
+  .header__logo{
+    font-size: 35px;
+  }
+  nav.nav {
+    background-color: transparent;
+    font-weight: 800;
+  }
+  .nav-menu a.nav-item.is-tab:hover {
+    border-bottom-color: transparent;
+  }
+  .nav-menu a.nav-item.is-tab.is-active:hover {
+    border-bottom-color: $primary;
+  }
 }
 
-nav.nav {
-  background-color: transparent;
-  font-weight: 800;
-}
-.nav-menu a.nav-item.is-tab:hover {
-  border-bottom-color: transparent;
-}
-.nav-menu a.nav-item.is-tab.is-active:hover {
-  border-bottom-color: $primary;
-}

@@ -3,13 +3,18 @@ import apiUrl from '../baseUrl';
 import {Http, HttpModule} from "@angular/http";
 import {Observable} from "rxjs";
 import {TestBed, inject, fakeAsync} from "@angular/core/testing";
+import {UserDispatch} from "../dispatchers/user.dispatch";
 describe('authentication', ()=> {
     let authentication: AuthenticationService;
     let mockHttp: Http;
+    let mockDispatch: UserDispatch;
     const mockResponse = {
-            "token": "token"
+        "token": "token"
     };
     beforeEach(()=> {
+        mockDispatch = {
+            updateUserSub: null
+        }as UserDispatch;
         mockHttp = {
             post: null
         } as Http;
@@ -41,7 +46,7 @@ describe('authentication', ()=> {
     ));
 
     it('should logout', ()=> {
-        authentication = new AuthenticationService(mockHttp);
+        authentication = new AuthenticationService(mockHttp, mockDispatch);
         spyOn(localStorage, 'removeItem');
         authentication.logout();
         expect(localStorage.removeItem).toHaveBeenCalledWith('currentUser');

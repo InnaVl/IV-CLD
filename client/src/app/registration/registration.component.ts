@@ -12,13 +12,13 @@ import {ValidationService} from "../services/validation.service";
 
 export class RegistrationComponent {
     @ViewChild('registrationForm') registration: any;
-    private user: User = {
+    public user: User = {
         username: null,
         firstName: null,
         lastName: null,
         password: null
     };
-    private confirmPassword: string;
+    public confirmPassword: string;
 
     constructor(private userService: UserService,
                 private notification: NotificationService,
@@ -27,11 +27,10 @@ export class RegistrationComponent {
     }
 
     onCreate() {
-        console.log(this.user);
-        if (this.isValid()) {
+        if (this.isValid(this.user.password, this.confirmPassword)) {
             this.userService.create(this.user).subscribe(
                 () => {
-                    this.notification.success('Welcome! You create an akk.')
+                    this.notification.success('Welcome! You create an account.')
                 },
                 err => {
                     this.notification.error(err._body);
@@ -41,10 +40,7 @@ export class RegistrationComponent {
         }
     }
 
-    isValid(): boolean {
-        return this.validationService.isEqualPassword(this.user.password, this.confirmPassword);
-    }
-    a(){
-        return 3;
+    isValid(pas1:string|number, pas2:string|number): boolean {
+        return this.validationService.isEqualPassword(pas1, pas2);
     }
 }

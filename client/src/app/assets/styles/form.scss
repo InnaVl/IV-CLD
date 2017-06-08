@@ -1,32 +1,39 @@
-//@import 'variables';
-//
-//.form {
-//  position: relative;
-//  z-index: 1;
-//  background: $primary-bg;
-//  max-width: 360px;
-//  margin: 20px auto 100px;
-//  padding: 45px;
-//  text-align: center;
-//  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-//
-//  input {
-//    outline: 0;
-//    background: $primary-input;
-//    width: 100%;
-//    border: 0;
-//    margin: 0 0 15px;
-//    padding: 15px;
-//    box-sizing: border-box;
-//    font-size: 14px;
-//  }
-//  .message {
-//    margin: 15px 0 0;
-//    color: $primary-link;
-//    font-size: 12px;
-//    a {
-//      color: $primary-bg;
-//      text-decoration: none;
-//    }
-//  }
-//}
+@import 'variables';
+.form {
+  margin-top: 1.25rem;
+  .form__title {
+    text-align: center;
+    padding: 20px;
+    .title__text{
+      font-weight: 900;
+    }
+  }
+  .form__footer {
+    .form__button {
+      display: flex;
+      justify-content: center;
+      .button {
+        padding: 5px 50px;
+      }
+    }
+    .form__message {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0 0;
+      color: grey;
+      font-size: 14px;
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 2px solid transparent;
+      }
+      a:hover {
+        border-bottom: 2px solid $primary-color;
+      }
+    }
+    .input {
+      background-color: #EEEEEE;
+    }
+  }
+}

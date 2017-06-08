@@ -1,6 +1,9 @@
 <div class="form">
     <div class="columns">
         <div class="column is-4 is-offset-4 card">
+            <div class="form__title">
+                <p class="title__text">Sign UP to APP</p>
+            </div>
             <form #registrationForm="ngForm">
                 <div class="field">
                     <p class="control">
@@ -32,11 +35,11 @@
                                placeholder="confirm password" required>
                     </p>
                 </div>
-                <div class="center">
-                    <div>
+                <div class="form__footer">
+                    <div class="form__button">
                         <button class="button" type="submit" (click)="onCreate()">create</button>
                     </div>
-                    <div>
+                    <div class="form__message">
                         <p>Already registered? <a routerLink="/login">Sign In</a></p>
                     </div>
                 </div>

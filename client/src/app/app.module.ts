@@ -17,6 +17,7 @@ import {CalendarComponent} from "./calendar/calendar.component";
 import {NotfoundComponent} from "./notFound/notfound.component";
 import {AppRoutingModule} from "./routing.module";
 import {ValidationService} from "./services/validation.service";
+import {UserDispatch} from "./dispatchers/user.dispatch";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {ValidationService} from "./services/validation.service";
         NotificationService,
         AuthenticationService,
         AuthGuard,
-        ValidationService
+        ValidationService,
+        UserDispatch
     ],
     bootstrap: [AppComponent]
 })

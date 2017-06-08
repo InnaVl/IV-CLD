@@ -14,7 +14,4 @@ describe('Calendar', () => {
     it('should create array of days', ()=>{
             expect(calendarComponent.createArrayOfDays()).toEqual([]);
     });
-    it('should return current date', ()=>{
-        expect(calendarComponent.getCurrentDate()).toBe(new Date());
-    });
 });

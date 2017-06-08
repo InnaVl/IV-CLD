@@ -16,6 +16,7 @@ export class UserService {
         return this.http.delete(apiUrl + '/users/' + _id, this.jwt());
     }
 
+
     // private helper methods
     private jwt() {
         // create authorization header with jwt token

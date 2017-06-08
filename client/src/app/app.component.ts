@@ -1,7 +1,7 @@
-import {Component, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 
 import {AuthenticationService} from "./services/authentication.service";
-import {User} from "../models/userModel";
+import {UserDispatch} from "./dispatchers/user.dispatch";
 
 @Component({
     selector: 'my-app',
@@ -9,17 +9,24 @@ import {User} from "../models/userModel";
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./app.component.scss', './assets/styles/global.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     public user: string = '';
 
+    ngOnInit() {
+        this.updateUser.updateUserSub.subscribe(
+            ()=>{this.user = this.getCurrentUserFullName()}
+        )
+    }
 
-    constructor(private authenticationService: AuthenticationService) {
+    constructor(private authenticationService: AuthenticationService,
+                private updateUser: UserDispatch) {
         this.user = this.getCurrentUserFullName();
     }
 
     onLogout() {
         this.authenticationService.logout();
     }
+
 
     getCurrentUserFullName(): string {
         let currentUser = localStorage.getItem('currentUser');
