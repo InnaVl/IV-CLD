@@ -18,6 +18,7 @@ import {NotfoundComponent} from "./notFound/notfound.component";
 import {AppRoutingModule} from "./routing.module";
 import {ValidationService} from "./services/validation.service";
 import {UserDispatch} from "./dispatchers/user.dispatch";
+import {CalendarTODOComponent} from "./calendar/calendar-todo/calendar-todo.component";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {UserDispatch} from "./dispatchers/user.dispatch";
         LoginComponent,
         NotificationComponent,
         CalendarComponent,
-        NotfoundComponent
+        NotfoundComponent,
+        CalendarTODOComponent
 
     ],
     providers: [

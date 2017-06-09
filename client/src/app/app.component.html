@@ -8,12 +8,28 @@
         </div>
         <div class="nav-right nav-menu">
             <span class="nav-item">Greetings, {{user || 'friend'}}!</span>
-            <a class="nav-item is-tab is-hidden-mobile" *ngIf="user" routerLink="/calendar">Calendar</a>
-            <a class="nav-item is-tab is-hidden-mobile" *ngIf="user" routerLink="/home">Home</a>
-            <a class="nav-item is-tab is-hidden-mobile" *ngIf="user" routerLink="/login" (click)="onLogout">Log out</a>
+            <a class="menu__link nav-item is-tab is-hidden-mobile"
+               *ngIf="user"
+               routerLinkActive="is-active"
+               routerLink="/calendar">Calendar</a>
+            <a class="menu__link nav-item is-tab is-hidden-mobile"
+               *ngIf="user"
+               routerLinkActive="is-active"
+               routerLink="/home">Home</a>
+            <a class="menu__link nav-item is-tab is-hidden-mobile"
+               *ngIf="user"
+               routerLink="/login"
+               routerLinkActive="is-active"
+               (click)="onLogout">Log out</a>
 
-            <a class="nav-item is-tab is-hidden-mobile" *ngIf="!user" routerLink="/login">Sign in</a>
-            <a class="nav-item is-tab is-hidden-mobile is-active" *ngIf="!user" routerLink="/registration">Sign up</a>
+            <a class="menu__link nav-item is-tab is-hidden-mobile"
+               *ngIf="!user"
+               routerLinkActive="is-active"
+               routerLink="/login">Sign in</a>
+            <a class="menu__link nav-item is-tab is-hidden-mobile"
+               *ngIf="!user"
+               routerLinkActive="is-active"
+               routerLink="/registration">Sign up</a>
 
         </div>
     </nav>

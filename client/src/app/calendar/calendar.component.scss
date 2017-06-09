@@ -1,28 +1,63 @@
 .calendar {
   margin: 1rem;
-}
+  &__side-panel {
+    .arrange {
+      &__title {
 
-.day {
-  border: solid #7f7f7f 1px;
-  height: 100px;
-}
-.date_name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+      }
+      &__variants {
 
-  i{
+      }
+      &__variant {
+        &__name {
+
+        }
+        &__icon {
+
+        }
+      }
+    }
+  }
+  &__main-panel {
+
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  &__nav {
     margin-top: -20px;
     padding: 10px;
   }
-}
-.title {
-  text-align: center;
-  padding: 5px;
-}
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &__title {
+    text-align: center;
+    padding: 5px;
+  }
+  &__content {
+
+  }
+  &__row {
+
+  }
+  &__element {
+    border: solid #7f7f7f 1px;
+    height: 100px;
+  }
+  &__element--not-current-month{
+      background-color: #d5d5d5;
+  }
+  &__day-number{
+
+  }
+  &__day-number--is-selected{
+
+  }
+  &__day-plan-list{
+
+  }
+  &__day-plan-item{
+
+  }
 }

@@ -1,0 +1,20 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  .home-page__user {
+
+  }
+  .home-page__settings {
+    .settings__title{
+      border-bottom: solid 1px #d5d5d5;
+    }
+    .settings__theme {
+      font-weight: 600;
+    }
+    .settings__delete-account {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
