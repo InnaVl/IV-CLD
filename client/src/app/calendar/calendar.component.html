@@ -1,54 +1,69 @@
-<div class="calendar tile is-ancestor">
-    <div class="calendar__side-panel tile is-4 is-vertical is-parent">
-        <div class="arrange tile is-child card">
-            <p class="arrange__title title">Arrange</p>
-            <div class="arrange__variants columns card-content">
-                <div class="arrange__variant column">
-                    <p class="variant__name">DAY</p>
-                    <i class="variant__icon fa fa-calendar"></i>
-                </div>
-                <div class="arrange__variant column">
-                    <p class="variant__name">WEEK</p>
-                    <i class="variant__icon fa fa-calendar"></i>
-                </div>
-                <div class="arrange__variant column">
-                    <p class="variant__name">MONTH</p>
-                    <i class="variant__icon fa fa-calendar"></i>
-                </div>
-            </div>
-        </div>
-        <div class="tile is-child card">
-            <calendar-todo></calendar-todo>
-        </div>
-    </div>
-    <div class="calendar__main-panel tile is-parent">
-        <div class="tile is-child card">
-            <div class="calendar__header">
-                <i class="calendar__nav fa fa-arrow-left"></i>
-                <span class="calendar__title title">{{currentMonth}}</span>
-                <i class="calendar__nav fa fa-arrow-right"></i>
-            </div>
-            <div class="calendar__content card-content">
-                <div class="calendar__row columns">
-                    <div class="calendar__day-name column"
-                    *ngFor="let dayName of weekDaysNames">
-                        {{dayName}}
+<div [ngClass]="{'day-view':isDaySelected,
+             'week-view':isWeekSelected}">
+    <div class="calendar tile is-ancestor">
+        <div class="calendar__side-panel tile is-4 is-vertical is-parent">
+            <div class="arrange tile is-child card">
+                <p class="arrange__title title">Arrange</p>
+                <div class="arrange__variants columns card-content">
+                    <div class="arrange__variant column"
+                         [ngClass]="{'arrange__variant--isActive':isDaySelected}"
+                         (click)="arrangeSelectDay()">
+                        <p class="variant__name">DAY</p>
+                        <i class="variant__icon fa fa-calendar"></i>
                     </div>
+                    <div class="arrange__variant column"
+                         [ngClass]="{'arrange__variant--isActive':isWeekSelected}"
+                         (click)="arrangeSelectWeek()">
+                        <p class="variant__name">WEEK</p>
+                        <i class="variant__icon fa fa-calendar"></i>
+                    </div>
+                    <div class="arrange__variant column"
+                         [ngClass]="{'arrange__variant--isActive':isMonthSelected}"
+                         (click)="arrangeSelectMonth()">
+                        <p class="variant__name">MONTH</p>
+                        <i class="variant__icon fa fa-calendar"></i>
+                    </div>
+
                 </div>
-                <div class="calendar__row columns"
-                     *ngFor="let week of calendarData">
-                    <div class="calendar__element column"
-                         *ngFor="let day of week"
-                         [ngClass]="{'calendar__element--not-current-month':day.month !== currentMonth}">
-                        <span ngclass="calendar__day-number">
+                <calendar-todo></calendar-todo>
+            </div>
+        </div>
+        <div class="calendar__main-panel tile is-parent">
+            <div class="tile is-child card">
+                <div class="calendar__header">
+                    <i class="calendar__nav fa fa-arrow-left"></i>
+                    <span class="calendar__title title">{{currentDate}}</span>
+                    <i class="calendar__nav fa fa-arrow-right"></i>
+                </div>
+                <div class="calendar__content card-content">
+                    <div class="calendar__day-name-row"
+                         *ngIf="!isDaySelected"
+                         [ngClass]="{'columns':isMonthSelected}">
+                        <div class="calendar__day-name column"
+                             *ngFor="let dayName of weekDaysNames">
+                            {{dayName}}
+                        </div>
+                    </div>
+
+                    <div class="calendar__row"
+                         *ngFor="let week of calendarData"
+                         [ngClass]="{'columns':isMonthSelected,
+                           'current-week':week.week.isCurrent}">
+                        <div class="calendar__element column"
+                             *ngFor="let day of week.week.days"
+                             [ngClass]="{'calendar__element--not-current-month':day.month !== currentMonth,
+                         'current-day':day.isCurrentDay}">
+                        <span   class="calendar__day-number"
+                                [ngClass]="{'calendar__day-number--today':day.isCurrentDay}">
                             {{day.date}}
                         </span>
-                        <ul class="calendar__day-plan-list">
-                            <li class="calendar__day-plan-item">task 1</li>
-                            <li class="calendar__day-plan-item">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </li>
-                        </ul>
+                            <ul class="calendar__day-plan-list">
+                                <li class="calendar__day-plan-item">task 1</li>
+                                <li class="calendar__day-plan-item">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

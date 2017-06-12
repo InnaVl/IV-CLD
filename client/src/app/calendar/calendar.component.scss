@@ -1,3 +1,21 @@
+@import '../assets/styles/variables';
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $small-screen) {
+      @content;
+    }
+  } @else if $media == medium-screens {
+    @media only screen and (min-width: $small-screen + 1) and (max-width: $large-screen - 1) {
+      @content;
+    }
+  } @else if $media == wide-screens {
+    @media only screen and (min-width: $large-screen) {
+      @content;
+    }
+  }
+}
+
 .calendar {
   margin: 1rem;
   &__side-panel {
@@ -8,6 +26,13 @@
       &__variants {
 
       }
+      &__variant--isActive {
+        background-color: #E6E6E6;
+        &__name {
+        }
+        &__icon {
+        }
+      }
       &__variant {
         &__name {
 
@@ -15,6 +40,9 @@
         &__icon {
 
         }
+      }
+      &__variant:hover {
+        background: #EEEEEE;
       }
     }
   }
@@ -38,6 +66,14 @@
   &__content {
 
   }
+  &__day-name-row{
+    @include respond-to(handhelds) {
+      display: none;
+    }
+    @include respond-to(medium-screens) {
+      display: none;
+    }
+  }
   &__row {
 
   }
@@ -45,19 +81,207 @@
     border: solid #7f7f7f 1px;
     height: 100px;
   }
-  &__element--not-current-month{
+  &__element--not-current-month {
+    background-color: #d5d5d5;
+  }
+  &__day-number {
+
+  }
+  &__day-number--today{
+    background: $primary-color;
+    padding: 2px;
+    border-radius: 10px;
+  }
+  &__day-number--is-selected {
+
+  }
+  &__day-plan-list {
+
+  }
+  &__day-plan-item {
+
+  }
+}
+
+.week-view {
+  .calendar {
+    margin: 1rem;
+    &__side-panel {
+      .arrange {
+        &__title {
+
+        }
+        &__variants {
+
+        }
+        &__variant--isActive {
+          background-color: #E6E6E6;
+          &__name {
+          }
+          &__icon {
+          }
+        }
+        &__variant {
+          &__name {
+
+          }
+          &__icon {
+
+          }
+        }
+        &__variant:hover {
+          background: #EEEEEE;
+        }
+      }
+    }
+    &__main-panel {
+
+    }
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    &__nav {
+      margin-top: -20px;
+      padding: 10px;
+    }
+    &__title {
+      text-align: center;
+      padding: 5px;
+    }
+    &__content {
+      display: flex;
+      justify-content: center;
+    }
+    &__row{
+      display: none;
+    }
+    &__row.current-week {
+      display: block;
+    }
+    &__day-name {
+      text-align: end;
+      height: 100px;
+    }
+    &__element {
+      @include respond-to(handhelds) {
+        width: 125px;
+      }
+      @include respond-to(medium-screens) {
+        width: 200px;
+      }
+      @include respond-to(wide-screens) {
+        width: 400px
+      }
+      border: solid #7f7f7f 1px;
+      height: 100px;
+    }
+    &__element--not-current-month {
       background-color: #d5d5d5;
-  }
-  &__day-number{
+    }
+    &__day-number {
 
-  }
-  &__day-number--is-selected{
+    }
+    &__day-number--is-selected {
 
-  }
-  &__day-plan-list{
+    }
+    &__day-plan-list {
 
-  }
-  &__day-plan-item{
+    }
+    &__day-plan-item {
 
+    }
+  }
+}
+
+.day-view {
+  .calendar {
+    margin: 1rem;
+    &__side-panel {
+      .arrange {
+        &__title {
+
+        }
+        &__variants {
+
+        }
+        &__variant--isActive {
+          background-color: #E6E6E6;
+          &__name {
+          }
+          &__icon {
+          }
+        }
+        &__variant {
+          &__name {
+
+          }
+          &__icon {
+
+          }
+        }
+        &__variant:hover {
+          background: #EEEEEE;
+        }
+      }
+    }
+    &__main-panel {
+
+    }
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    &__nav {
+      margin-top: -20px;
+      padding: 10px;
+    }
+    &__title {
+      text-align: center;
+      padding: 5px;
+    }
+    &__content {
+
+    }
+    &__row {
+
+    }
+    &__element {
+      display: none;
+    }
+    &__element.current-day {
+      display: block;
+      border: solid #7f7f7f 1px;
+      height: 300px;
+    }
+    &__element--not-current-month {
+      background-color: #d5d5d5;
+    }
+    &__day-number {
+
+    }
+    &__day-number--is-selected {
+
+    }
+    &__day-plan-list {
+
+    }
+    &__day-plan-item {
+
+    }
+  }
+}
+
+@media print {
+  .arrange, .calendar__nav {
+    display: none;
+  }
+  .calendar__main-panel {
+    position: absolute;
+    width: 100%;
   }
 }

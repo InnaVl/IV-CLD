@@ -8,6 +8,24 @@
   font-family: "Roboto", sans-serif;
   color: #464451;
 }
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $small-screen) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $small-screen + 1) and (max-width: $large-screen - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $large-screen) { @content; }
+  }
+}
+
+@media print {
+  header, nav, .header, .nav {
+    display: none;
+  }
+}
+
 //
 //button {
 //  text-transform: uppercase;
@@ -23,4 +41,9 @@
 //button:hover, button:active, button:focus {
 //  background: $primary;
 //}
+
+
+
+
+
 @import "~bulma";
