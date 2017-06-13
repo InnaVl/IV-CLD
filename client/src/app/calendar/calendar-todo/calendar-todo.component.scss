@@ -1,3 +1,13 @@
+@import '../../assets/styles/variables';
+
+.todo{
+  &__title{
+    text-align: center;
+    padding: 5px;
+    border-bottom: 2px solid $primary-color;
+  }
+}
+
 @media print {
   .todo__add-new-task {
     display: none;

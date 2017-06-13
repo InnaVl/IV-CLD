@@ -15,17 +15,19 @@ import {NotificationService} from "./services/notification.service";
 import {AuthenticationService} from "./services/authentication.service";
 import {CalendarComponent} from "./calendar/calendar.component";
 import {NotfoundComponent} from "./notFound/notfound.component";
-import {AppRoutingModule} from "./routing.module";
+import {AppRoutingModule} from "./routes/app.routing.module";
 import {ValidationService} from "./services/validation.service";
 import {UserDispatch} from "./dispatchers/user.dispatch";
 import {CalendarTODOComponent} from "./calendar/calendar-todo/calendar-todo.component";
+import {TasksModule} from "./tasks-list/tasks-list.module";
 
 
 @NgModule({
     imports: [
         AppRoutingModule,
         BrowserModule, HttpModule,
-        FormsModule
+        FormsModule,
+        TasksModule
     ],
     declarations: [
         AppComponent,

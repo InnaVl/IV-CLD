@@ -3,7 +3,7 @@ import {HttpModule, Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {UserService} from "./user.service";
-import {User} from "../../models/userModel";
+import {User} from "../../models/user.model";
 import apiUrl from '../baseUrl';
 describe('UserService', () => {
     let mockHttp: Http;

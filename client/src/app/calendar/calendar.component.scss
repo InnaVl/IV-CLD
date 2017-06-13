@@ -21,24 +21,26 @@
   &__side-panel {
     .arrange {
       &__title {
-
+        text-align: center;
+        padding: 5px;
+        border-bottom: 2px solid $primary-color;
       }
       &__variants {
 
       }
       &__variant--isActive {
-        background-color: #E6E6E6;
+        background-color: $primary-color;
         &__name {
         }
         &__icon {
         }
       }
       &__variant {
+        text-align: center;
         &__name {
 
         }
         &__icon {
-
         }
       }
       &__variant:hover {
@@ -66,7 +68,7 @@
   &__content {
 
   }
-  &__day-name-row{
+  &__day-name-row {
     @include respond-to(handhelds) {
       display: none;
     }
@@ -87,7 +89,7 @@
   &__day-number {
 
   }
-  &__day-number--today{
+  &__day-number--today {
     background: $primary-color;
     padding: 2px;
     border-radius: 10px;
@@ -105,7 +107,6 @@
 
 .week-view {
   .calendar {
-    margin: 1rem;
     &__side-panel {
       .arrange {
         &__title {
@@ -115,7 +116,6 @@
 
         }
         &__variant--isActive {
-          background-color: #E6E6E6;
           &__name {
           }
           &__icon {
@@ -130,7 +130,6 @@
           }
         }
         &__variant:hover {
-          background: #EEEEEE;
         }
       }
     }
@@ -138,10 +137,6 @@
 
     }
     &__header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
     }
     &__nav {
       margin-top: -20px;
@@ -155,7 +150,7 @@
       display: flex;
       justify-content: center;
     }
-    &__row{
+    &__row {
       display: none;
     }
     &__row.current-week {
@@ -179,7 +174,6 @@
       height: 100px;
     }
     &__element--not-current-month {
-      background-color: #d5d5d5;
     }
     &__day-number {
 
@@ -198,7 +192,6 @@
 
 .day-view {
   .calendar {
-    margin: 1rem;
     &__side-panel {
       .arrange {
         &__title {
@@ -208,7 +201,6 @@
 
         }
         &__variant--isActive {
-          background-color: #E6E6E6;
           &__name {
           }
           &__icon {
@@ -223,7 +215,7 @@
           }
         }
         &__variant:hover {
-          background: #EEEEEE;
+
         }
       }
     }
@@ -231,18 +223,10 @@
 
     }
     &__header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
     }
     &__nav {
-      margin-top: -20px;
-      padding: 10px;
     }
     &__title {
-      text-align: center;
-      padding: 5px;
     }
     &__content {
 
@@ -259,7 +243,7 @@
       height: 300px;
     }
     &__element--not-current-month {
-      background-color: #d5d5d5;
+
     }
     &__day-number {
 
