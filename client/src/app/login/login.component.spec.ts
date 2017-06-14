@@ -3,10 +3,10 @@ import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {Observable} from "rxjs";
 import {LoginComponent} from "./login.component";
 import {AuthenticationService} from "../services/authentication.service";
-import {Router, Route, ActivatedRoute, UrlSegment} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 
-describe('notification component', ()=> {
+describe('login component', ()=> {
     let component: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
     let mockNotification: NotificationService;
@@ -40,9 +40,10 @@ describe('notification component', ()=> {
         ));
 
         mockRoute = {
-            snapshot: null
+            snapshot: {
+                queryParams : []
+            }
         } as ActivatedRoute;
-        mockRoute.snapshot.queryParams = [];
 
 
         TestBed.configureTestingModule({

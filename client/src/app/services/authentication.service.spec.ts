@@ -2,19 +2,14 @@ import {AuthenticationService} from "./authentication.service";
 import apiUrl from '../baseUrl';
 import {Http, HttpModule} from "@angular/http";
 import {Observable} from "rxjs";
-import {TestBed, inject, fakeAsync} from "@angular/core/testing";
-import {UserDispatch} from "../dispatchers/user.dispatch";
+import {TestBed, fakeAsync} from "@angular/core/testing";
 describe('authentication', ()=> {
     let authentication: AuthenticationService;
     let mockHttp: Http;
-    let mockDispatch: UserDispatch;
     const mockResponse = {
         "token": "token"
     };
     beforeEach(()=> {
-        mockDispatch = {
-            updateUserSub: null
-        }as UserDispatch;
         mockHttp = {
             post: null
         } as Http;
@@ -29,24 +24,21 @@ describe('authentication', ()=> {
                 {
                     provide: Http,
                     useValue: mockHttp
-                },
-                AuthenticationService
+                }
             ]
         });
+        authentication = new AuthenticationService(mockHttp);
     });
 
-    it('should login', fakeAsync(
-        inject([AuthenticationService], authenticationService => {
-            authenticationService.login('username', 'password')
-                .subscribe(() => {
-                    expect(mockHttp.post).toHaveBeenCalledWith(apiUrl + '/users/authenticate',
-                        {username: 'username', password: 'password'});
-                });
-        })
-    ));
+    it('should login', fakeAsync(()=> {
+        authentication.login('username', 'password')
+            .subscribe(() => {
+                expect(mockHttp.post).toHaveBeenCalledWith(apiUrl + '/users/authenticate',
+                    {username: 'username', password: 'password'});
+            });
+    }));
 
     it('should logout', ()=> {
-        authentication = new AuthenticationService(mockHttp, mockDispatch);
         spyOn(localStorage, 'removeItem');
         authentication.logout();
         expect(localStorage.removeItem).toHaveBeenCalledWith('currentUser');

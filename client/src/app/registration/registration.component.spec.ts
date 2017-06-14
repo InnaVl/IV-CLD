@@ -6,6 +6,8 @@ import {NotificationService} from "../services/notification.service";
 import {ValidationService} from "../services/validation.service";
 import {Observable} from "rxjs";
 import {error} from "shelljs";
+import {AuthenticationService} from "../services/authentication.service";
+import {Router} from "@angular/router";
 
 describe('Registration', () => {
 
@@ -13,9 +15,22 @@ describe('Registration', () => {
     let fixture: ComponentFixture<RegistrationComponent>;
     let mockUserService: UserService;
     let mockNotification: NotificationService;
+    let mockAuthenticationService: AuthenticationService;
+    let mockRouter:Router;
     let mockRes;
 
     beforeEach(() => {
+        mockRouter = {
+            navigate:null
+        }as Router;
+        spyOn(mockRouter, 'navigate');
+        mockAuthenticationService = {
+            login:null,
+            logout:null
+        } as AuthenticationService;
+        spyOn(mockAuthenticationService, 'login').and.returnValue(Observable.of({}));
+        spyOn(mockAuthenticationService, 'logout');
+
         mockUserService = {
             create: null
         }as UserService;
@@ -47,7 +62,15 @@ describe('Registration', () => {
                     provide: NotificationService,
                     useValue: mockNotification
                 },
-                ValidationService
+                {
+                    provide: AuthenticationService,
+                    useValue: mockAuthenticationService
+                },
+                ValidationService,
+                {
+                    provide: Router,
+                    useValue: mockRouter
+                }
             ],
             declarations: [RegistrationComponent],
         });
@@ -75,6 +98,8 @@ describe('Registration', () => {
         registration.confirmPassword = 'right';
         registration.onCreate();
         expect(mockNotification.success).toHaveBeenCalled();
+        expect(mockAuthenticationService.login).toHaveBeenCalled();
+        expect(mockRouter.navigate).toHaveBeenCalledWith(['/home']);
     })
 
 

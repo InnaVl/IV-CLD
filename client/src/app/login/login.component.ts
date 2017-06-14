@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Credentials} from "../../models/user.model";
 import {AuthenticationService} from "../services/authentication.service";
 import {NotificationService} from "../services/notification.service";
-import {UserDispatch} from "../dispatchers/user.dispatch";
+
 
 
 @Component({
@@ -14,7 +14,6 @@ import {UserDispatch} from "../dispatchers/user.dispatch";
 
 export class LoginComponent implements OnInit {
 
-    @Output() updateUser = new EventEmitter();
 
     private credentials: Credentials = {
         username: null,

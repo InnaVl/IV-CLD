@@ -7,8 +7,4 @@ export class ValidationService {
         return pas1 === pas2;
     }
 
-    isUserNameUniq(userName:string){
-
-    }
-
 }

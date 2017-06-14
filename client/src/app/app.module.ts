@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {RegistrationComponent} from "./registration/registration.component";
-import {RouterModule, Routes} from '@angular/router';
 import {NotificationComponent} from "./notification/notification.component";
 import {AuthGuard} from './guards/guards';
 import {UserService} from "./services/user.service";
@@ -17,7 +16,6 @@ import {CalendarComponent} from "./calendar/calendar.component";
 import {NotfoundComponent} from "./notFound/notfound.component";
 import {AppRoutingModule} from "./routes/app.routing.module";
 import {ValidationService} from "./services/validation.service";
-import {UserDispatch} from "./dispatchers/user.dispatch";
 import {CalendarTODOComponent} from "./calendar/calendar-todo/calendar-todo.component";
 import {TasksModule} from "./tasks-list/tasks-list.module";
 
@@ -46,8 +44,7 @@ import {TasksModule} from "./tasks-list/tasks-list.module";
         NotificationService,
         AuthenticationService,
         AuthGuard,
-        ValidationService,
-        UserDispatch
+        ValidationService
     ],
     bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 
 import {AuthenticationService} from "./services/authentication.service";
-import {UserDispatch} from "./dispatchers/user.dispatch";
+import {updateUserSub} from "./dispatchers/user.dispatch";
 
 @Component({
     selector: 'my-app',
@@ -13,13 +13,12 @@ export class AppComponent implements OnInit {
     public user: string = '';
 
     ngOnInit() {
-        this.updateUser.updateUserSub.subscribe(
+       updateUserSub.subscribe(
             ()=>{this.user = this.getCurrentUserFullName()}
         )
     }
 
-    constructor(private authenticationService: AuthenticationService,
-                private updateUser: UserDispatch) {
+    constructor(private authenticationService: AuthenticationService) {
         this.user = this.getCurrentUserFullName();
     }
 
