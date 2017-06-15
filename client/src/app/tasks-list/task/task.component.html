@@ -1,1 +1,40 @@
-<p>quest</p>
+<div class="task">
+    <div class="task__form columns">
+        <div class="card column is-half is-offset-3">
+            <div class="field">
+                <label class="label">Task name</label>
+                <p class="control">
+                    <input class="input" type="text" [value]="taskName">
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">Task date</label>
+                <p class="control">
+                    <input class="input" type="date">
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">Priority</label>
+                <p class="control">
+                    <span class="select">
+                         <select>
+                             <option>Low</option>
+                             <option [selected]="true">Normal</option>
+                             <option>High</option>
+                         </select>
+                     </span>
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">Description</label>
+                <p class="control">
+                    <textarea class="textarea" [value]="taskDescription"></textarea>
+                </p>
+            </div>
+            <div class="task__nav">
+                <a class="task__button button" (click)="save()">Save changes</a>
+                <a class="task__button button" (click)="cancel()">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

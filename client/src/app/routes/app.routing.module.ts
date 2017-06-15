@@ -9,13 +9,64 @@ import {CalendarComponent} from "../calendar/calendar.component";
 import {TasksListComponent} from "../tasks-list/tasks-list.component";
 
 const appRoutes: Routes = <Routes>[
-    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-    {path: 'login', component: LoginComponent},
-    {path: 'registration', component: RegistrationComponent},
-    {path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard]},
-    {path: 'tasks', component: TasksListComponent, canActivate: [AuthGuard]},
-    {path: '', component: HomeComponent, canActivate: [AuthGuard], pathMatch: 'full'},
-    {path: '**', component: NotfoundComponent}
+    {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Home',
+            meta:[{
+                name:'description',
+                content: 'Home page, with settings'
+            }]
+        }
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+            title: 'Sign in',
+            meta:[{
+                name:'description',
+                content: 'Login Page'
+            }]
+        }
+    },
+    {
+        path: 'registration',
+        component: RegistrationComponent,
+        data: {
+            title: 'Sign up',
+            meta:[{
+                name:'description',
+                content: 'registration page'
+            }]
+        }
+    },
+    {
+        path: 'calendar',
+        component: CalendarComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Calendar',
+            meta:[{
+                name:'description',
+                content: 'Calendar with todo list'
+            }]
+        }
+    },
+    {
+        path: 'task',
+        component: TasksListComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Tasks',
+            meta:[{
+                name:'description',
+                content: 'List of all tasks'
+            }]
+        }},
+    {path: '', redirectTo: '/home', canActivate: [AuthGuard], pathMatch: 'full'}
 ];
 
 @NgModule({

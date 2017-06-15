@@ -1,0 +1,15 @@
+.task {
+  margin-top: 20px;
+  &__nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+
+  }
+  &__button {
+    margin: 10px;
+  }
+  &__form {
+    padding: 10px;
+  }
+}

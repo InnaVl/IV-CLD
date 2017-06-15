@@ -3,7 +3,7 @@ import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {Observable} from "rxjs";
 import {LoginComponent} from "./login.component";
 import {AuthenticationService} from "../services/authentication.service";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 
 describe('login component', ()=> {
@@ -12,7 +12,7 @@ describe('login component', ()=> {
     let mockNotification: NotificationService;
     let mockAuthenticationService: AuthenticationService;
     let mockRouter: Router;
-    let mockRoute: ActivatedRoute;
+    let mockRoute;
     let mockRes;
 
     beforeEach(()=> {
@@ -39,11 +39,12 @@ describe('login component', ()=> {
             }
         ));
 
+
         mockRoute = {
             snapshot: {
-                queryParams : []
+                queryParams: []
             }
-        } as ActivatedRoute;
+        };
 
 
         TestBed.configureTestingModule({
@@ -59,7 +60,7 @@ describe('login component', ()=> {
                 },
                 {
                     provide: ActivatedRoute,
-                    useValue: mockRoute
+                    useValue: <ActivatedRoute>mockRoute
                 },
                 {
                     provide: Router,
