@@ -1,0 +1,11 @@
+<div>
+    <div *ngIf="!hide" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <p>{{modalText}}</p>
+            <a class="button" (click)="onClick(true)">Save</a>
+            <a class="button" (click)="onClick(false)">Leave</a>
+        </div>
+        <button class="modal-close"></button>
+    </div>
+</div>

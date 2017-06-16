@@ -18,6 +18,7 @@ import {AppRoutingModule} from "./routes/app.routing.module";
 import {ValidationService} from "./services/validation.service";
 import {CalendarTODOComponent} from "./calendar/calendar-todo/calendar-todo.component";
 import {TasksModule} from "./tasks-list/tasks-list.module";
+import {ModalComponent} from "./modal/modal.component";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {TasksModule} from "./tasks-list/tasks-list.module";
         NotificationComponent,
         CalendarComponent,
         NotfoundComponent,
-        CalendarTODOComponent
+        CalendarTODOComponent,
+      // ModalComponent
 
     ],
     providers: [
