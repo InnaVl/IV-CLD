@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 @Component({
     selector: 'tasks',
     templateUrl: 'tasks-list.component.html',
@@ -7,9 +7,9 @@ import {Router} from "@angular/router";
 })
 
 export class TasksListComponent {
-    constructor(private router:Router){}
+    constructor(private router:Router, private route:ActivatedRoute){}
     openTask() {
-        const link = ['task', 1];
+        const link = ['/tasks-list', '1'];
         this.router.navigate(link);
     }
 }

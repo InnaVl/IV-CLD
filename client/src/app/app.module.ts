@@ -14,11 +14,12 @@ import {NotificationService} from "./services/notification.service";
 import {AuthenticationService} from "./services/authentication.service";
 import {CalendarComponent} from "./calendar/calendar.component";
 import {NotfoundComponent} from "./notFound/notfound.component";
-import {AppRoutingModule} from "./routes/app.routing.module";
+import {AppRoutingModule} from "./app.routing.module";
 import {ValidationService} from "./services/validation.service";
 import {CalendarTODOComponent} from "./calendar/calendar-todo/calendar-todo.component";
 import {TasksModule} from "./tasks-list/tasks-list.module";
 import {ModalComponent} from "./modal/modal.component";
+import {ModalService} from "./services/modal.service";
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {ModalComponent} from "./modal/modal.component";
         AppRoutingModule,
         BrowserModule, HttpModule,
         FormsModule,
-        TasksModule
+     //   TasksModule
     ],
     declarations: [
         AppComponent,
@@ -37,7 +38,7 @@ import {ModalComponent} from "./modal/modal.component";
         CalendarComponent,
         NotfoundComponent,
         CalendarTODOComponent,
-      // ModalComponent
+     //   ModalComponent
 
     ],
     providers: [
@@ -46,7 +47,8 @@ import {ModalComponent} from "./modal/modal.component";
         NotificationService,
         AuthenticationService,
         AuthGuard,
-        ValidationService
+        ValidationService,
+      //  ModalService
     ],
     bootstrap: [AppComponent]
 })

@@ -1,11 +1,15 @@
-<div>
-    <div *ngIf="!hide" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <p>{{modalText}}</p>
-            <a class="button" (click)="onClick(true)">Save</a>
-            <a class="button" (click)="onClick(false)">Leave</a>
+<div class="modal-window modal"
+[ngClass]="{'modal-window--visible':!isHide}">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="modal-window__content card">
+            <p class="modal-window__text">{{message}}</p>
+            <div class="modal-window__controls">
+                <a class="modal-window__button button" (click)="onClick(true)">Save</a>
+                <a class="modal-window__button button" (click)="onClick(false)">Leave</a>
+            </div>
         </div>
-        <button class="modal-close"></button>
     </div>
+
+    <button class="modal-close" (click)="close()"></button>
 </div>

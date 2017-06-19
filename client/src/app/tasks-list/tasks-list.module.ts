@@ -1,13 +1,14 @@
-
-import {TasksRoutingModule} from "../routes/tasks.routing.module";
+import {TasksRoutingModule} from "./tasks.routing.module";
 import {NgModule} from "@angular/core";
 import {TasksListComponent} from "./tasks-list.component";
 import {TaskComponent} from "./task/task.component";
 import {ModalComponent} from "../modal/modal.component";
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {ModalService} from "../services/modal.service";
+import {CanDeactivateGuard} from "../guards/deactivate-guard";
 
 @NgModule({
-    declarations:[
+    declarations: [
         TasksListComponent,
         TaskComponent,
         ModalComponent
@@ -16,6 +17,10 @@ import { CommonModule } from '@angular/common';
         TasksRoutingModule,
         CommonModule
     ],
-    providers:[]
+    providers: [
+        CanDeactivateGuard,
+        ModalService
+    ]
 })
-export class TasksModule {}
+export class TasksModule {
+}

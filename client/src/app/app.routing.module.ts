@@ -1,12 +1,12 @@
 import {NgModule}              from '@angular/core';
 import {RouterModule, Routes}  from '@angular/router';
-import {NotfoundComponent} from "../notFound/notfound.component";
-import {AuthGuard} from "../guards/guards";
-import {HomeComponent} from "../home/home.component";
-import {LoginComponent} from "../login/login.component";
-import {RegistrationComponent} from "../registration/registration.component";
-import {CalendarComponent} from "../calendar/calendar.component";
-import {TasksListComponent} from "../tasks-list/tasks-list.component";
+import {NotfoundComponent} from "./notFound/notfound.component";
+import {AuthGuard} from "./guards/guards";
+import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
+import {RegistrationComponent} from "./registration/registration.component";
+import {CalendarComponent} from "./calendar/calendar.component";
+import {TasksListComponent} from "./tasks-list/tasks-list.component";
 
 const appRoutes: Routes = <Routes>[
     {
@@ -15,8 +15,8 @@ const appRoutes: Routes = <Routes>[
         canActivate: [AuthGuard],
         data: {
             title: 'Home',
-            meta:[{
-                name:'description',
+            meta: [{
+                name: 'description',
                 content: 'Home page, with settings'
             }]
         }
@@ -26,8 +26,8 @@ const appRoutes: Routes = <Routes>[
         component: LoginComponent,
         data: {
             title: 'Sign in',
-            meta:[{
-                name:'description',
+            meta: [{
+                name: 'description',
                 content: 'Login Page'
             }]
         }
@@ -37,8 +37,8 @@ const appRoutes: Routes = <Routes>[
         component: RegistrationComponent,
         data: {
             title: 'Sign up',
-            meta:[{
-                name:'description',
+            meta: [{
+                name: 'description',
                 content: 'registration page'
             }]
         }
@@ -49,24 +49,31 @@ const appRoutes: Routes = <Routes>[
         canActivate: [AuthGuard],
         data: {
             title: 'Calendar',
-            meta:[{
-                name:'description',
+            meta: [{
+                name: 'description',
                 content: 'Calendar with todo list'
             }]
         }
     },
-    {
-        path: 'task',
-        component: TasksListComponent,
-        canActivate: [AuthGuard],
+    { //not angular-cli way to lazy loading
+        path: 'tasks-list',
+        canLoad:[AuthGuard],
+        loadChildren: () => new Promise(resolve => {
+            (require as any).ensure([], require => {
+                resolve(require('./tasks-list/tasks-list.module.ts').TasksModule);
+            })
+        }),
         data: {
             title: 'Tasks',
-            meta:[{
-                name:'description',
+            meta: [{
+                name: 'description',
                 content: 'List of all tasks'
             }]
-        }},
-    {path: '', redirectTo: '/home', canActivate: [AuthGuard], pathMatch: 'full'}
+        }
+    },
+
+    {path: '', redirectTo: '/home', canActivate: [AuthGuard], pathMatch: 'full'},
+    {path: '**', component:NotfoundComponent}
 ];
 
 @NgModule({
