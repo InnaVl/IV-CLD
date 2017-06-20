@@ -1,4 +1,4 @@
-import {NotificationService} from "../services/notification.service";
+import {NotificationService} from "../../services/notification.service";
 import {NotificationComponent} from "./notification.component";
 import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {Observable} from "rxjs";

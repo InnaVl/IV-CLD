@@ -1,10 +1,10 @@
 import {Routes, RouterModule} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {TaskComponent} from "./task/task.component";
-//import {NotfoundComponent} from "../notFound/notfound.component";
-import {AuthGuard} from "../guards/guards";
-import {CanDeactivateGuard} from "../guards/deactivate-guard";
+import {AuthGuard} from "../../guards/guards";
+import {CanDeactivateGuard} from "../../guards/deactivate-guard";
 import {TasksListComponent} from "./tasks-list.component";
+import {TasksResolve} from "../../resolvers/tasks.resolve";
 
 
 const routes: Routes = [
@@ -18,6 +18,9 @@ const routes: Routes = [
                 component: TaskComponent,
                 canActivate: [AuthGuard],
                 canDeactivate: [CanDeactivateGuard],
+                resolve: {
+                    'tasks-list': TasksResolve
+                },
                 data: {
                     title: 'Task',
                     meta: [{

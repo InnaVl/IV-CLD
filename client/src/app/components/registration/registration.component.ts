@@ -1,9 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {UserService} from '../services/user.service';
+import {UserService} from '../../services/user.service';
 import {User} from '../../models/user.model';
-import {NotificationService} from '../services/notification.service';
-import {ValidationService} from "../services/validation.service";
-import {AuthenticationService} from "../services/authentication.service";
+import {NotificationService} from '../../services/notification.service';
+import {ValidationService} from "../../services/validation.service";
+import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
 
 @Component({

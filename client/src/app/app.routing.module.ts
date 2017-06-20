@@ -1,12 +1,12 @@
 import {NgModule}              from '@angular/core';
 import {RouterModule, Routes}  from '@angular/router';
-import {NotfoundComponent} from "./notFound/notfound.component";
+import {NotfoundComponent} from "./components/notFound/notfound.component";
 import {AuthGuard} from "./guards/guards";
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import {RegistrationComponent} from "./registration/registration.component";
-import {CalendarComponent} from "./calendar/calendar.component";
-import {TasksListComponent} from "./tasks-list/tasks-list.component";
+import {HomeComponent} from "./components/home/home.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegistrationComponent} from "./components/registration/registration.component";
+import {CalendarComponent} from "./components/calendar/calendar.component";
+import {TasksListComponent} from "./components/tasks-list/tasks-list.component";
 
 const appRoutes: Routes = <Routes>[
     {
@@ -60,7 +60,7 @@ const appRoutes: Routes = <Routes>[
         canLoad:[AuthGuard],
         loadChildren: () => new Promise(resolve => {
             (require as any).ensure([], require => {
-                resolve(require('./tasks-list/tasks-list.module.ts').TasksModule);
+                resolve(require('./components/tasks-list/tasks-list.module.ts').TasksModule);
             })
         }),
         data: {

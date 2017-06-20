@@ -1,8 +1,8 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Credentials} from "../../models/user.model";
-import {AuthenticationService} from "../services/authentication.service";
-import {NotificationService} from "../services/notification.service";
+import {AuthenticationService} from "../../services/authentication.service";
+import {NotificationService} from "../../services/notification.service";
 
 
 

@@ -1,12 +1,12 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {RegistrationComponent} from "./registration.component";
 import {FormsModule} from "@angular/forms";
-import {UserService} from "../services/user.service";
-import {NotificationService} from "../services/notification.service";
-import {ValidationService} from "../services/validation.service";
+import {UserService} from "../../services/user.service";
+import {NotificationService} from "../../services/notification.service";
+import {ValidationService} from "../../services/validation.service";
 import {Observable} from "rxjs";
 import {error} from "shelljs";
-import {AuthenticationService} from "../services/authentication.service";
+import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
 
 describe('Registration', () => {
