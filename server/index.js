@@ -10,10 +10,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // use JWT auth to secure the api
-app.use(expressJwt({ secret: config.secret }).unless({ path: ['/users/authenticate', '/users/register'] }));
+app.use(expressJwt({ secret: config.secret }).unless(
+    { path: [
+        '/users/authenticate',
+        '/users/register',
+        '/tasks/add'
+    ]}));
 
 // routes
 app.use('/users', require('./controllers/users.controller'));
+app.use('/tasks', require('./controllers/tasks.controller'));
+
 
 // start server
 var port = process.env.NODE_ENV === 'production' ? 80 : 4000;

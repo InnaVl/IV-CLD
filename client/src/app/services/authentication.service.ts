@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map'
 import apiUrl from '../baseUrl';
-import {updateUserSub} from "../dispatchers/user.dispatch";
+import {updateUserSub} from "../dispatchers/subs";
 
 
 @Injectable()

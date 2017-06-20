@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, OnInit, OnDestroy} from '@angular/core';
 
 import {AuthenticationService} from "./services/authentication.service";
-import {updateUserSub} from "./dispatchers/user.dispatch";
+import {updateUserSub} from "./dispatchers/subs";
 import {Title, Meta} from "@angular/platform-browser";
 import {Subscription} from "rxjs";
 import {Router, NavigationEnd} from "@angular/router";

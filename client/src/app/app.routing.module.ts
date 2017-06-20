@@ -7,6 +7,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegistrationComponent} from "./components/registration/registration.component";
 import {CalendarComponent} from "./components/calendar/calendar.component";
 import {TasksListComponent} from "./components/tasks-list/tasks-list.component";
+import {PreloadModule} from "./services/preload.service";
 
 const appRoutes: Routes = <Routes>[
     {
@@ -57,13 +58,14 @@ const appRoutes: Routes = <Routes>[
     },
     { //not angular-cli way to lazy loading
         path: 'tasks-list',
-        canLoad:[AuthGuard],
+        canLoad: [AuthGuard],
         loadChildren: () => new Promise(resolve => {
             (require as any).ensure([], require => {
                 resolve(require('./components/tasks-list/tasks-list.module.ts').TasksModule);
             })
         }),
         data: {
+            preload: true,
             title: 'Tasks',
             meta: [{
                 name: 'description',
@@ -73,12 +75,12 @@ const appRoutes: Routes = <Routes>[
     },
 
     {path: '', redirectTo: '/home', canActivate: [AuthGuard], pathMatch: 'full'},
-    {path: '**', component:NotfoundComponent}
+    {path: '**', component: NotfoundComponent}
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadModule})
     ],
     exports: [
         RouterModule

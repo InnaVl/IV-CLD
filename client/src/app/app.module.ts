@@ -22,13 +22,14 @@ import {ModalComponent} from "./components/modal/modal.component";
 import {ModalService} from "./services/modal.service";
 import {TasksService} from "./services/tasks.service";
 import {TasksResolve} from "./resolvers/tasks.resolve";
+import {PreloadModule} from "./services/preload.service";
 
 
 @NgModule({
     imports: [
         AppRoutingModule,
         BrowserModule, HttpModule,
-        FormsModule,
+        FormsModule
      //   TasksModule
     ],
     declarations: [
@@ -51,7 +52,8 @@ import {TasksResolve} from "./resolvers/tasks.resolve";
         AuthGuard,
         ValidationService,
         TasksService,
-        TasksResolve
+        TasksResolve,
+        PreloadModule
       //  ModalService
     ],
     bootstrap: [AppComponent]
