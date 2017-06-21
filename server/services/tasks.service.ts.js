@@ -11,6 +11,7 @@ var service = {};
 
 service.add = add;
 service.edit = edit;
+service.getById = getById;
 //service.delete = deleteTask;
 
 module.exports = service;
@@ -28,23 +29,35 @@ function add(task) {
     return deferred.promise;
 }
 
-// function getById(_id) {
-//     var deferred = Q.defer();
-//
-//     db.users.findById(_id, function (err, user) {
-//         if (err) deferred.reject(err.name + ': ' + err.message);
-//
-//         if (user) {
-//             // return user (without hashed password)
-//             deferred.resolve(_.omit(user, 'hash'));
-//         } else {
-//             // user not found
-//             deferred.resolve();
-//         }
-//     });
-//
-//     return deferred.promise;
-// }
+function edit(task) {
+    var deferred = Q.defer();
+    db.tasks.updateOne(
+        {id: task.id},
+        {task: task.task},
+        function (err) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            deferred.resolve();
+        });
+
+    return deferred.promise;
+}
+
+function getById(_id) {
+    var deferred = Q.defer();
+    console.log(_id);
+    db.tasks.findOne({id: Number(_id)}, function (err, task) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        console.log(task);
+        if (task) {
+            deferred.resolve(task);
+        } else {
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
 
 // function deleteTask(_id) {
 //     var deferred = Q.defer();

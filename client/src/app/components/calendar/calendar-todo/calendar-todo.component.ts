@@ -9,15 +9,43 @@ import {TasksService} from "../../../services/tasks.service";
 })
 
 export class CalendarTODOComponent {
-    constructor(private taskService:TasksService){
+    constructor(private taskService: TasksService) {
     };
+
+    // addTask() {
+    //     console.log(localStorage.getItem('currentUser'));
+    //     this.taskService.addTask({
+    //         id: Number(new Date()),
+    //         task:{
+    //             name:'name'
+    //         }
+    //     }).subscribe(
+    //         ()=> {
+    //             console.log('add')
+    //         },
+    //         err=> console.error(err)
+    //     );
+    // }
+    editTask() {
+        console.log(localStorage.getItem('currentUser'));
+        this.taskService.editTask({
+            id: 1498049801330,
+            task:{
+                name:'newname'
+            }
+        }).subscribe(
+            ()=> {
+                console.log('edit')
+            },
+            err=> console.error(err)
+        );
+    }
     addTask() {
-        console.log('click');
-    this.taskService.addTask({name:'12'}).subscribe(
-        ()=>{
-            console.log('add')
-        },
-        err=> console.error(err)
-    );
+        this.taskService.getById(1498049802392).subscribe(
+            (d)=> {
+                console.log(`${d} sdsd`)
+            },
+            err=> console.error(err)
+        );
     }
 }

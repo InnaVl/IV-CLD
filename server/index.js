@@ -14,7 +14,10 @@ app.use(expressJwt({ secret: config.secret }).unless(
     { path: [
         '/users/authenticate',
         '/users/register',
-        '/tasks/add'
+        '/tasks/add',
+        '/tasks/edit',
+        '/tasks/current',
+        '/tasks/current/1498049801330'
     ]}));
 
 // routes
