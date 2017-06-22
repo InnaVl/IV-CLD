@@ -4,7 +4,7 @@
             <div class="field">
                 <label class="label">Task name</label>
                 <p class="control">
-                    <input class="input" type="text" [value]="task.taskName">
+                    <input class="input" type="text" [value]="task.action">
                 </p>
             </div>
             <div class="field">
@@ -18,9 +18,9 @@
                 <p class="control">
                     <span class="select">
                          <select>
-                             <option>Low</option>
-                             <option [selected]="true">Normal</option>
-                             <option>High</option>
+                             <option [selected]="task.priority==='low'">Low</option>
+                             <option [selected]="task.priority==='normal'">Normal</option>
+                             <option [selected]="task.priority==='high'">High</option>
                          </select>
                      </span>
                 </p>
@@ -28,7 +28,7 @@
             <div class="field">
                 <label class="label">Description</label>
                 <p class="control">
-                    <textarea class="textarea" [value]="taskDescription"></textarea>
+                    <textarea class="textarea" [value]="task.description"></textarea>
                 </p>
             </div>
             <div class="task__nav">

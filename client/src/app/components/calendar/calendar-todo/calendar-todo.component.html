@@ -3,7 +3,9 @@
     <div class="todo__main card-content">
         <div class="todo__add-new-task field has-addons">
             <p class="todo__add-new-task-control control">
-                <input class="todo__add-new-task-input input" type="text" placeholder="Add new task">
+                <input class="todo__add-new-task-input input"
+                       [(ngModel)]="taskAction" type="text"
+                       placeholder="Add new task">
             </p>
             <p class="todo__add-new-task-control control">
                 <a class="todo__add-new-task-button button" (click)="addTask()">
@@ -12,19 +14,14 @@
             </p>
         </div>
         <ul class="todo__task-list">
-            <li class="todo__item">
+            <li class="todo__item"
+            *ngFor="let task of tasks">
                 <div class="task columns">
-                    <div class="task__name column is-three-quarters">Finish calendar</div>
+                    <div class="task__name column is-three-quarters">{{task.action}}</div>
                     <div class="task__delete column">
-                        <button class="task__delete-button delete"></button>
-                    </div>
-                </div>
-            </li>
-            <li class="todo__item">
-                <div class="task columns">
-                    <div class="task__name column is-three-quarters">Angular Routing</div>
-                    <div class="task__delete column">
-                        <button class="task__delete-button delete"></button>
+                        <button (click)="deleteTask(task.taskId)"
+                                class="task__delete-button delete">
+                        </button>
                     </div>
                 </div>
             </li>

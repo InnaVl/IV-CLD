@@ -1,20 +1,7 @@
 <div class="columns">
     <div class="column is-2">
-
-        <p>
-            <a (click)="openTask()">task 1</a>
-        </p>
-        <p>
-            <a (click)="openTask()">task 2</a>
-        </p>
-        <p>
-            <a (click)="openTask()">task 3</a>
-        </p>
-        <p>
-            <a (click)="openTask()">task 4</a>
-        </p>
-        <p>
-            <a (click)="openTask()">task 5</a>
+        <p *ngFor="let task of tasks">
+            <a (click)="openTask(task.taskId)">{{task.action}}</a>
         </p>
     </div>
     <div class="column is-10">

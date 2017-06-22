@@ -6,19 +6,24 @@ var expressJwt = require('express-jwt');
 var config = require('./config.json');
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // use JWT auth to secure the api
-app.use(expressJwt({ secret: config.secret }).unless(
-    { path: [
-        '/users/authenticate',
-        '/users/register',
-        '/tasks/add',
-        '/tasks/edit',
-        '/tasks/current',
-        '/tasks/current/1498049801330'
-    ]}));
+app.use(expressJwt({secret: config.secret}).unless(
+    {
+        path: [
+            '/users/authenticate',
+            '/users/register',
+            '/tasks/add',
+            '/tasks/edit',
+            '/tasks/current',
+            '/tasks/month',
+            '/tasks/day',
+            '/tasks/delete',
+            '/tasks/all'
+        ]
+    }));
 
 // routes
 app.use('/users', require('./controllers/users.controller'));

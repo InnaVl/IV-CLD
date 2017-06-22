@@ -16,17 +16,17 @@ describe('Registration', () => {
     let mockUserService: UserService;
     let mockNotification: NotificationService;
     let mockAuthenticationService: AuthenticationService;
-    let mockRouter:Router;
+    let mockRouter: Router;
     let mockRes;
 
     beforeEach(() => {
         mockRouter = {
-            navigate:null
+            navigate: null
         }as Router;
         spyOn(mockRouter, 'navigate');
         mockAuthenticationService = {
-            login:null,
-            logout:null
+            login: null,
+            logout: null
         } as AuthenticationService;
         spyOn(mockAuthenticationService, 'login').and.returnValue(Observable.of({}));
         spyOn(mockAuthenticationService, 'logout');
@@ -100,7 +100,5 @@ describe('Registration', () => {
         expect(mockNotification.success).toHaveBeenCalled();
         expect(mockAuthenticationService.login).toHaveBeenCalled();
         expect(mockRouter.navigate).toHaveBeenCalledWith(['/home']);
-    })
-
-
+    });
 });

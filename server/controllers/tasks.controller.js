@@ -7,8 +7,11 @@ var tasksService = require('../services/tasks.service.ts');
 router.post('/add', add);
 router.post('/edit', edit);
 router.get('/current', getCurrent);
-// router.get('/all', getAll);
-// router.delete('/:_id', deleteUser);
+router.get('/all', getAll);
+router.get('/day', getForDay);
+router.get('/month', getForMonth);
+router.delete('/delete', deleteTask);
+
 
 module.exports = router;
 
@@ -45,26 +48,57 @@ function getCurrent(req, res) {
             res.status(400).send(err);
         });
 }
-// function getAll(req, res) {
-//     tasksService.getAll(req.task.user_id)
-//         .then(function (task) {
-//             if (task) {
-//                 res.send(task);
-//             } else {
-//                 res.sendStatus(404);
-//             }
-//         })
-//         .catch(function (err) {
-//             res.status(400).send(err);
-//         });
-// }
-//
-// function deleteUser(req, res) {
-//     tasksService.delete(req.params._id)
-//         .then(function () {
-//             res.sendStatus(200);
-//         })
-//         .catch(function (err) {
-//             res.status(400).send(err);
-//         });
-// }
+function getAll(req, res) {
+    tasksService.getAllUserTasks(req.query.username)
+        .then(function (task) {
+            if (task) {
+                res.send(task);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+function getForDay(req, res) {
+    tasksService.getTaskForDay(
+        req.query.username,
+        req.query.day,
+        req.query.month,
+        req.query.year
+    ).then(function (task) {
+        if (task) {
+            res.send(task);
+        } else {
+            res.sendStatus(404);
+        }
+    })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function getForMonth(req, res) {
+    tasksService.getAllForMonth(req.query.username, req.query.month, req.query.year)
+        .then(function (task) {
+            if (task) {
+                res.send(task);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function deleteTask(req, res) {
+    tasksService.delete(req.query.taskId, req.query.username)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}

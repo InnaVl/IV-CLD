@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ModalService} from "../../../services/modal.service";
+import {TasksService} from "../../../services/tasks.service";
 @Component({
     selector: 'tasks',
     templateUrl: 'task.component.html',
@@ -10,25 +11,33 @@ import {ModalService} from "../../../services/modal.service";
 export class TaskComponent implements OnInit, OnDestroy {
     private isAllChangesSaved = false;
     private task;
+    id: number;
+    private sub: any;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private modalService: ModalService) {
+                private modalService: ModalService,
+                private tasksService: TasksService) {
     }
+
     ngOnInit() {
-        this.task = this.route.snapshot.data['tasks-list'];
+      //  this.task = this.route.snapshot.data['tasks-list'];
+        this.sub = this.route.params.subscribe(params => {
+            this.id = +params['taskId'];
+        });
+
+        this.tasksService.getTaskById(this.id).subscribe(
+            task=> {
+                this.task = JSON.parse(task['_body'])
+            }
+        );
         console.log(this.task);
     }
+
     //
     // ngOnInit(): void {
     //
-    //     // this.route.params.switchMap((params:Params)=>{
-    //     //     console.log(params['id']) //get task by service
-    //     // })
-    //     // .subscribe(
-    //     //     task=> {//init task}
-    //     //     }
-    //     // );
+    //
     //
     // }
 

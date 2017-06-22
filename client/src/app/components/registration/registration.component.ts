@@ -30,24 +30,29 @@ export class RegistrationComponent {
     }
 
     onCreate() {
-        if (this.isValid(this.user.password, this.confirmPassword)) {
-            this.userService.create(this.user).subscribe(
-                () => {
-                    this.notification.success('Welcome! You create an account.');
-                    this.authenticationService.login(this.user.username, this.user.password).subscribe(
-                        () => {
-                            this.router.navigate(['/home']);
-                        },
-                        error => {
-                            this.notification.error(error._body);
-                        })
-                },
-                err => {
-                    this.notification.error(err._body);
-                });
+        if (this.registration.valid) {
+            if (this.isValid(this.user.password, this.confirmPassword)) {
+                this.userService.create(this.user).subscribe(
+                    () => {
+                        this.notification.success('Welcome! You create an account.');
+                        this.authenticationService.login(this.user.username, this.user.password).subscribe(
+                            () => {
+                                this.router.navigate(['/home']);
+                            },
+                            error => {
+                                this.notification.error(error._body);
+                            })
+                    },
+                    err => {
+                        this.notification.error(err._body);
+                    });
+            } else {
+                this.notification.error('Wrong confirmation password');
+            }
         } else {
-            this.notification.error('Wrong confirmation password');
+            this.notification.error('Users data is invalid');
         }
+
     }
 
     isValid(pas1: string|number, pas2: string|number): boolean {

@@ -12,7 +12,10 @@ var service = {};
 service.add = add;
 service.edit = edit;
 service.getById = getById;
-//service.delete = deleteTask;
+service.getAllUserTasks = getAllUserTasks;
+service.delete = deleteTask;
+service.getAllForMonth = getAllForMonth;
+service.getTaskForDay = getTaskForDay;
 
 module.exports = service;
 
@@ -36,19 +39,48 @@ function edit(task) {
         {task: task.task},
         function (err) {
             if (err) deferred.reject(err.name + ': ' + err.message);
-
             deferred.resolve();
         });
 
     return deferred.promise;
 }
 
-function getById(_id) {
+function getById(taskId) {
     var deferred = Q.defer();
-    console.log(_id);
-    db.tasks.findOne({id: Number(_id)}, function (err, task) {
+    db.tasks.findOne({taskId: Number(taskId)}, function (err, task) {
         if (err) deferred.reject(err.name + ': ' + err.message);
-        console.log(task);
+        if (task) {
+            deferred.resolve(task);
+        } else {
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+function getAllUserTasks(username) {
+    var deferred = Q.defer();
+    db.tasks.findItems({username: username}, function (err, task) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (task) {
+            deferred.resolve(task);
+        } else {
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+function getAllForMonth(username, month, year) {
+    var deferred = Q.defer();
+    db.tasks.findItems({
+        $and: [
+            {username: username},
+            {month: Number(month)},
+            {year: Number(year)}
+        ]
+    }, function (err, task) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
         if (task) {
             deferred.resolve(task);
         } else {
@@ -59,16 +91,40 @@ function getById(_id) {
     return deferred.promise;
 }
 
-// function deleteTask(_id) {
-//     var deferred = Q.defer();
-//
-//     db.tasks.remove(
-//         {_id: mongo.helper.toObjectID(_id)},
-//         function (err) {
-//             if (err) deferred.reject(err.name + ': ' + err.message);
-//
-//             deferred.resolve();
-//         });
-//
-//     return deferred.promise;
-// }
+function getTaskForDay(username, day, month, year) {
+    var deferred = Q.defer();
+    db.tasks.findItems({
+        $and: [
+            {username: username},
+            {day: Number(day)},
+            {month: Number(month)},
+            {year: Number(year)}
+        ]
+    }, function (err, task) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (task) {
+            deferred.resolve(task);
+        } else {
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+
+function deleteTask(id, username) {
+    var deferred = Q.defer();
+    db.tasks.remove({
+            $and: [
+                {username: username},
+                {taskId: Number(id)}
+            ]
+        },
+        function (err) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            deferred.resolve();
+        });
+
+    return deferred.promise;
+}

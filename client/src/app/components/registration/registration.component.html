@@ -7,37 +7,140 @@
             <form #registrationForm="ngForm">
                 <div class="field">
                     <p class="control">
-                        <input class="input" type="text" name="username" [(ngModel)]="user.username"
+                        <label class="label">Username:</label>
+                        <input class="input" type="text"
+                               #username="ngModel"
+                               name="username" [(ngModel)]="user.username"
+                               minlength="3"
+                               maxlength="50"
+                               pattern="^[a-z0-9_-]{0,50}$"
                                placeholder="username" required>
                     </p>
                 </div>
+                <div *ngIf="username.errors && (username.dirty || username.touched)" class="error">
+                    <div class="error__msg"
+                         [hidden]="!username.errors.required">
+                        Username is required.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!username.errors.minlength">
+                        Username must be at least 3 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!username.errors.maxlength">
+                        Username cannot be more than 50 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!username.errors.pattern">
+                        Allowed symbols is A-z, 0-9, -, _
+                    </div>
+                </div>
                 <div class="field">
                     <p class="control">
-                        <input class="input" type="text" name="firstName" [(ngModel)]="user.firstName"
+                        <label class="label">First name:</label>
+                        <input class="input"
+                               type="text"
+                               name="firstName"
+                               #firstName="ngModel"
+                               minlength="2"
+                               maxlength="50"
+                               pattern="^[a-z]{0,50}$"
+                               [(ngModel)]="user.firstName"
                                placeholder="first name" required>
                     </p>
                 </div>
+                <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="error">
+                    <div class="error__msg"
+                         [hidden]="!firstName.errors.required">
+                        First name is required.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!firstName.errors.minlength">
+                        First name must be at least 2 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!firstName.errors.maxlength">
+                        First name cannot be more than 50 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!firstName.errors.pattern">
+                        Allowed symbols is A-z
+                    </div>
+                </div>
                 <div class="field">
                     <p class="control">
-                        <input class="input" type="text" name="lastName" [(ngModel)]="user.lastName"
+                        <label class="label">Last name:</label>
+                        <input class="input"
+                               type="text"
+                               name="lastName"
+                               #lastName="ngModel"
+                               minlength="2"
+                               maxlength="50"
+                               pattern="^[a-z]{0,50}$"
+                               [(ngModel)]="user.lastName"
                                placeholder="last name" required>
                     </p>
                 </div>
-                <div class="field">
-                    <p class="control">
-                        <input class="input" type="password" name="password" [(ngModel)]="user.password"
-                               placeholder="password" required>
-                    </p>
+                <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="error">
+                    <div class="error__msg"
+                         [hidden]="!lastName.errors.required">
+                        Last name is required.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!lastName.errors.minlength">
+                        Last name must be at least 2 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!lastName.errors.maxlength">
+                        Last name cannot be more than 50 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!lastName.errors.pattern">
+                        Allowed symbols is A-z
+                    </div>
                 </div>
                 <div class="field">
                     <p class="control">
-                        <input class="input" type="password" name="conf_password" [(ngModel)]="confirmPassword"
+                        <label class="label">Password:</label>
+                        <input class="input"
+                               type="password"
+                               name="password"
+                               #password="ngModel"
+                               minlength="6"
+                               maxlength="50"
+                               [(ngModel)]="user.password"
+                               placeholder="password" required>
+                    </p>
+                </div>
+                <div *ngIf="password.errors && (password.dirty || password.touched)" class="error">
+                    <div class="error__msg"
+                         [hidden]="!password.errors.required">
+                        Password is required.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!password.errors.minlength">
+                        Password must be at least 6 characters long.
+                    </div>
+                    <div class="error__msg"
+                         [hidden]="!password.errors.maxlength">
+                        Password cannot be more than 50 characters long.
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <label class="label">Confirm hassword:</label>
+                        <input class="input"
+                               type="password"
+                               name="conf_password"
+                               [(ngModel)]="confirmPassword"
                                placeholder="confirm password" required>
                     </p>
                 </div>
                 <div class="form__footer">
                     <div class="form__button">
-                        <button class="button" type="submit" (click)="onCreate()">create</button>
+                        <button class="button" type="submit"
+                                (click)="onCreate()">create
+                        </button>
                     </div>
                     <div class="form__message">
                         <p>Already registered? <a routerLink="/login">Sign In</a></p>

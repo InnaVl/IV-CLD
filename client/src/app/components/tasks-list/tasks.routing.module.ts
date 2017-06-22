@@ -14,7 +14,7 @@ const routes: Routes = [
         children: [
 
             {
-                path: ':id',
+                path: ':taskId',
                 component: TaskComponent,
                 canActivate: [AuthGuard],
                 canDeactivate: [CanDeactivateGuard],
