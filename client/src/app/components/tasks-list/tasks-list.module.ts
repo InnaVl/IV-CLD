@@ -6,12 +6,15 @@ import {ModalComponent} from "../../components/modal/modal.component";
 import {CommonModule} from '@angular/common';
 import {ModalService} from "../../services/modal.service";
 import {CanDeactivateGuard} from "../../guards/deactivate-guard";
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
     declarations: [
         TasksListComponent,
         TaskComponent,
-        ModalComponent
+        ModalComponent,
+       // FormsModule
     ],
     imports: [
         TasksRoutingModule,

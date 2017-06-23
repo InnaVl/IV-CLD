@@ -12,7 +12,6 @@ export class TaskComponent implements OnInit, OnDestroy {
     private isAllChangesSaved = false;
     private task;
     id: number;
-    private sub: any;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -21,25 +20,10 @@ export class TaskComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-      //  this.task = this.route.snapshot.data['tasks-list'];
-        this.sub = this.route.params.subscribe(params => {
-            this.id = +params['taskId'];
-        });
-
-        this.tasksService.getTaskById(this.id).subscribe(
-            task=> {
-                this.task = JSON.parse(task['_body'])
-            }
-        );
-        console.log(this.task);
+        console.log(this.route);
+        this.task = JSON.parse(this.route.snapshot.data['tasks-list']['_body']);
+        console.log(this.task)
     }
-
-    //
-    // ngOnInit(): void {
-    //
-    //
-    //
-    // }
 
     ngOnDestroy() {
         this.modalService.destroy();
@@ -69,6 +53,15 @@ export class TaskComponent implements OnInit, OnDestroy {
     save() {
         this.updateTask();
         this.isAllChangesSaved = true;
+        console.log(this.task);
+        this.tasksService.editTask(this.task)
+            .subscribe(
+                ()=> {
+                },
+                err=> {
+                    console.log(err);
+                }
+            );
         //  this.gotoTasks();
 
     }

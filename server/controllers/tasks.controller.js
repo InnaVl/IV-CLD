@@ -36,7 +36,7 @@ function edit(req, res) {
 }
 
 function getCurrent(req, res) {
-    tasksService.getById(req.query.id)
+    tasksService.getById(req.query.taskId)
         .then(function (task) {
             if (task) {
                 res.send(task);
