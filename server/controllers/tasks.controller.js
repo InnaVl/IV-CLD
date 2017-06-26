@@ -62,25 +62,21 @@ function getAll(req, res) {
         });
 }
 function getForDay(req, res) {
-    tasksService.getTaskForDay(
-        req.query.username,
-        req.query.day,
-        req.query.month,
-        req.query.year
-    ).then(function (task) {
-        if (task) {
-            res.send(task);
-        } else {
-            res.sendStatus(404);
-        }
-    })
+    tasksService.getTaskForDay(req.query.username, req.query.date)
+        .then(function (task) {
+            if (task) {
+                res.send(task);
+            } else {
+                res.sendStatus(404);
+            }
+        })
         .catch(function (err) {
             res.status(400).send(err);
         });
 }
 
 function getForMonth(req, res) {
-    tasksService.getAllForMonth(req.query.username, req.query.month, req.query.year)
+    tasksService.getAllForMonth(req.query.username, req.query.date)
         .then(function (task) {
             if (task) {
                 res.send(task);

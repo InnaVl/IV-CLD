@@ -1,7 +1,12 @@
 <div class="columns">
-    <div class="column is-2">
-        <p *ngFor="let task of tasks">
-            <a (click)="openTask(task.taskId)">{{task.action}}</a>
+    <div class="task-list  column is-2">
+        <p *ngFor="let task of tasks; let isEven=even"
+           [class.task-list__item--even]="isEven" class="task-list__item">
+            <i [ngClass]="{'task-list__task-priority--normal':task.priority === 'normal',
+            'task-list__task-priority--high':task.priority === 'high',
+            'task-list__task-priority--low':task.priority === 'low'}" class="fa fa-square"></i>
+            <a class="task-list__task" (click)="openTask(task.taskId)">{{task.action}}</a>
+
         </p>
     </div>
     <div class="column is-10">

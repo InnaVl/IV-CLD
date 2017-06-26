@@ -10,17 +10,21 @@
             <div class="field">
                 <label class="label">Task date</label>
                 <p class="control">
-                    <input class="input" type="date" [value]="'s0'+task.month+'-'+task.day+'-'+task.year">
+                    <input class="input" type="date"
+                           [(ngModel)]="taskDate">
                 </p>
             </div>
             <div class="field">
                 <label class="label">Priority</label>
                 <p class="control">
                     <span class="select">
-                         <select [(ngModel)]s="task.priority">
-                             <option [selected]="task.priority==='low'">Low</option>
-                             <option [selected]="task.priority==='normal'">Normal</option>
-                             <option [selected]="task.priority==='high'">High</option>
+                         <select [(ngModel)]="task.priority">
+                             <option [ngValue]="'low'"
+                                     [selected]="task.priority==='low'">Low</option>
+                             <option [ngValue]="'normal'"
+                                     [selected]="task.priority==='normal'">Normal</option>
+                             <option [ngValue]="'high'"
+                                     [selected]="task.priority==='high'">High</option>
                          </select>
                      </span>
                 </p>
@@ -28,7 +32,7 @@
             <div class="field">
                 <label class="label">Description</label>
                 <p class="control">
-                    <textarea class="textarea" [value]="task.description"></textarea>
+                    <textarea class="textarea" [(ngModel)]="task.description"></textarea>
                 </p>
             </div>
             <div class="task__nav">

@@ -6,7 +6,5 @@ export interface ITask {
     description?: string;
     priority: string;
     done?: boolean;
-    day: number;
-    month: number;
-    year: number;
+    date: string;
 }

@@ -1,25 +1,27 @@
 @import "../../assets/styles/variables";
+
 .modal-window {
-  &__content{
+  &__content {
     position: fixed;
     top: 45vh;
     width: 300px;
     left: calc(50% - 150px);
     padding: 50px;
   }
-  &__text{
+  &__text {
     text-align: center;
     border-bottom: 1px solid $primary-color;
     margin-bottom: 5px;
   }
-  &__controls{
+  &__controls {
     display: flex;
     justify-content: center;
   }
-  &__button{
+  &__button {
     margin: 5px;
   }
 }
-.modal-window--visible{
+
+.modal-window--visible {
   display: block;
 }

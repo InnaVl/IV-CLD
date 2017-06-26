@@ -35,8 +35,4 @@ export class ModalComponent implements OnInit, OnDestroy {
         }
         this.isHide = true;
     }
-    close(){
-        this.modalService.close();
-        this.isHide = true;
-    }
 }

@@ -12,7 +12,6 @@ export class TasksResolve implements Resolve<ITasks> {
     }
 
     resolve(route: ActivatedRouteSnapshot) {
-        console.log(route.paramMap.get('taskId'));
         return this.taskService.getTaskById(route.paramMap.get('taskId'));
     }
 }

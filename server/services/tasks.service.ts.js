@@ -35,8 +35,19 @@ function add(task) {
 function edit(task) {
     var deferred = Q.defer();
     db.tasks.updateOne(
-        {id: task.id},
-        {task: task.task},
+        {
+            $and: [
+                {username: task.username},
+                {taskId: Number(task.taskId)}
+            ]
+        },
+        {
+            taskId: Number(task.taskId),
+            username: task.username,
+            date: task.date,
+            action: task.action,
+            priority: task.priority
+        },
         function (err) {
             if (err) deferred.reject(err.name + ': ' + err.message);
             deferred.resolve();
@@ -71,13 +82,13 @@ function getAllUserTasks(username) {
 
     return deferred.promise;
 }
-function getAllForMonth(username, month, year) {
+function getAllForMonth(username, date) {
     var deferred = Q.defer();
+    var subDate = '^' + date.substring(0, 6) + '-[0-9]{2}';
     db.tasks.findItems({
         $and: [
             {username: username},
-            {month: Number(month)},
-            {year: Number(year)}
+            {date: {$regex: subDate}}
         ]
     }, function (err, task) {
         if (err) deferred.reject(err.name + ': ' + err.message);
@@ -91,14 +102,12 @@ function getAllForMonth(username, month, year) {
     return deferred.promise;
 }
 
-function getTaskForDay(username, day, month, year) {
+function getTaskForDay(username, date) {
     var deferred = Q.defer();
     db.tasks.findItems({
         $and: [
             {username: username},
-            {day: Number(day)},
-            {month: Number(month)},
-            {year: Number(year)}
+            {date: date}
         ]
     }, function (err, task) {
         if (err) deferred.reject(err.name + ': ' + err.message);

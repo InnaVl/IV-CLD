@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TasksService} from "../../../services/tasks.service";
-import {ITask} from "../../../models/task.model";
+import {TasksService} from '../../../services/tasks.service';
+import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -11,7 +11,8 @@ import {ITask} from "../../../models/task.model";
 })
 
 export class CalendarTODOComponent implements OnInit {
-    constructor(private taskService: TasksService) {
+    constructor(private taskService: TasksService,
+                public datepipe: DatePipe,) {
     };
 
     public taskAction: string;
@@ -29,11 +30,10 @@ export class CalendarTODOComponent implements OnInit {
             this.taskService.addTask({
                 taskId: Number(new Date()),
                 username: this.user.username,
-                day: now.getDate(),
-                month: now.getMonth() + 1,
-                year: now.getFullYear(),
+                date: this.datepipe.transform(now, 'yyyy-MM-dd'),
                 action: this.taskAction,
-                priority: 'normal'
+                priority: 'normal',
+                description :''
 
             }).subscribe(
                 ()=> {
@@ -58,14 +58,10 @@ export class CalendarTODOComponent implements OnInit {
 
     fetchTasks() {
         let now = new Date();
-        this.taskService.getTaskForDay(this.user.username,
-            now.getDate(),
-            now.getMonth() + 1,
-            now.getFullYear(),
+        this.taskService.getTaskForDay(this.user.username, this.datepipe.transform(now, 'yyyy-MM-dd')
         )
             .subscribe(
                 (data)=> {
-                    console.log(data);
                     this.tasks = JSON.parse(data['_body']);
                 }
             );

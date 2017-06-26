@@ -1,0 +1,27 @@
+.task-list {
+  border-right: 2px solid #eeeeee;
+  margin-top: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &__item {
+    padding: 10px 0 5px 20px;
+    background: #EEEEEE;
+  }
+  &__item--even {
+    background: transparent;
+  }
+  &__task {
+    color: #000000;
+  }
+  &__task-priority--normal {
+    color: #fff67f;
+  }
+  &__task-priority--low {
+    color: #A3C644;
+  }
+  &__task-priority--high {
+    color: #ff3170;
+  }
+
+}

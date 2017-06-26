@@ -10,20 +10,24 @@ import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
+    imports: [
+        TasksRoutingModule,
+        CommonModule,
+        FormsModule
+    ],
     declarations: [
         TasksListComponent,
         TaskComponent,
-        ModalComponent,
-       // FormsModule
+        ModalComponent
+
     ],
-    imports: [
-        TasksRoutingModule,
-        CommonModule
-    ],
+
     providers: [
         CanDeactivateGuard,
         ModalService
     ]
 })
 export class TasksModule {
+
+
 }

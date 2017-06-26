@@ -21,10 +21,6 @@ export class ModalService {
         this.subject.next({isHiden: false, isSaved: false, isCanceled: false});
     }
 
-    close() {
-        this.subject.next({isHiden: true, isSaved: false, isCanceled: false})
-    }
-
     destroy() {
         this.subject.next({isHiden: false, isSaved: false, isCanceled: false});
         this.subject.complete();

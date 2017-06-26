@@ -27,8 +27,8 @@ export class TasksService {
     getAllTaskForMonth(username: number|string, month: string|number, year: number) {
         return this.http.get(apiUrl + '/tasks/month', {params: {username, month, year}});
     }
-    getTaskForDay(username: number|string, day:number, month: string|number, year: number){
-        return this.http.get(apiUrl + '/tasks/day', {params: {username, day, month, year}});
+    getTaskForDay(username: number|string, date:string){
+        return this.http.get(apiUrl + '/tasks/day', {params: {username, date}});
     }
 
     removeTask(taskId: number|string, username: string|number) {

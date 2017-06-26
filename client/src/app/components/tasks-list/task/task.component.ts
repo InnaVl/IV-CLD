@@ -1,7 +1,9 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterStateSnapshot} from "@angular/router";
 import {ModalService} from "../../../services/modal.service";
 import {TasksService} from "../../../services/tasks.service";
+import {DatePipe} from "@angular/common";
+
 @Component({
     selector: 'tasks',
     templateUrl: 'task.component.html',
@@ -9,80 +11,73 @@ import {TasksService} from "../../../services/tasks.service";
 })
 
 export class TaskComponent implements OnInit, OnDestroy {
-    private isAllChangesSaved = false;
     private task;
-    id: number;
+    private initialTask;
+    private taskDate;
+
 
     constructor(private route: ActivatedRoute,
+                public datepipe: DatePipe,
                 private router: Router,
                 private modalService: ModalService,
                 private tasksService: TasksService) {
+
     }
 
     ngOnInit() {
-        console.log(this.route);
         this.task = JSON.parse(this.route.snapshot.data['tasks-list']['_body']);
-        console.log(this.task)
+        this.initialTask = Object.assign({}, this.task);
+        this.taskDate = this.task.date;
     }
 
     ngOnDestroy() {
         this.modalService.destroy();
     }
 
-    openModal() {
-        this.modalService.open();
-        this.modalService.getSub()
-            .subscribe(
-                data=> {
-                    if (data.isSaved) {
-                        this.save();
-                        this.gotoTasks();
-                    }
-                    else if (data.isCanceled) {
-                        this.isAllChangesSaved = true;
-                        this.gotoTasks()
-                    }
-                }
-            );
-    }
-
     cancel() {
-        this.openModal();
+        this.router.navigate(['tasks-list'])
     }
 
     save() {
-        this.updateTask();
-        this.isAllChangesSaved = true;
-        console.log(this.task);
+        console.log(this.task.date);
+        this.task.date = this.datepipe.transform(this.taskDate, 'yyyy-MM-dd');
+        console.log(this.task.date);
         this.tasksService.editTask(this.task)
             .subscribe(
                 ()=> {
+                    this.initialTask = Object.assign({}, this.task);
                 },
                 err=> {
                     console.log(err);
                 }
             );
-        //  this.gotoTasks();
-
     }
 
-    updateTask() {
+    canDeactivate() {
+        if (!this.isAllChangesSaved()) {
+            this.modalService.open();
+            return new Promise((resolve) => {
+                this.modalService.getSub().subscribe(res => {
+                    if (res.isSaved) {
+                        this.save();
+                    }
+                    if (res.isSaved || res.isCanceled) {
+                        resolve(true)
+                    }
+                    else {
+                        resolve(false);
+                    }
 
-    }
-
-    gotoTasks() {
-        this.router.navigate(['tasks-list'])
-    }
-
-    canDeactivate(): boolean {
-        if (this.isAllChangesSaved) {
-            return true;
+                });
+            })
         }
         else {
-            this.openModal();
+            return true
         }
-        return false;
     }
 
+    isAllChangesSaved() {
+        return JSON.stringify(this.task) === JSON.stringify(this.initialTask);
+    }
 
 }
