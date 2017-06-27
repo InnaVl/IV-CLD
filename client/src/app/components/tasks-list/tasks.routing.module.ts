@@ -6,13 +6,13 @@ import {CanDeactivateGuard} from "../../guards/deactivate-guard";
 import {TasksListComponent} from "./tasks-list.component";
 import {TasksResolve} from "../../resolvers/tasks.resolve";
 
-
+// Implement Feature Area with its own routing, implement access to router parameters.
 const routes: Routes = [
     {
         path: '',
         component: TasksListComponent,
         children: [
-
+// Implement child routes with the following guards: canActivate, resolve.
             {
                 path: ':taskId',
                 component: TaskComponent,

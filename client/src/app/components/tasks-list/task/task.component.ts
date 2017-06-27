@@ -25,9 +25,13 @@ export class TaskComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.task = JSON.parse(this.route.snapshot.data['tasks-list']['_body']);
-        this.initialTask = Object.assign({}, this.task);
-        this.taskDate = this.task.date;
+        this.route.data.subscribe((data) => {
+            this.task = JSON.parse(data['tasks-list']['_body']);
+            this.initialTask = Object.assign({}, this.task);
+            this.taskDate = this.task.date;
+        });
+
+
     }
 
     ngOnDestroy() {
@@ -52,7 +56,7 @@ export class TaskComponent implements OnInit, OnDestroy {
                 }
             );
     }
-
+// Implement canDeactivate guard for one of your forms
     canDeactivate() {
         if (!this.isAllChangesSaved()) {
             this.modalService.open();

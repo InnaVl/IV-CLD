@@ -3,6 +3,8 @@ import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 //import './rxjs-extensions';
 
+
+ // Implement custom preloading strategy.
 @Injectable()
 export class PreloadModule implements PreloadingStrategy {
     private preloadedModules: string[] = [];
